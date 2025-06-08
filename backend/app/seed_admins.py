@@ -33,7 +33,7 @@ users_to_seed = [
         "password": "7978650309",
         "role": "ASC",
         "email": "",
-        "phone": "7978650309"
+        "phone": "9876544320"
     },
     {
         "name": "Aastik Das Gupta",

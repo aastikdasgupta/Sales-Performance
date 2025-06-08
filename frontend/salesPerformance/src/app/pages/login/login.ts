@@ -5,6 +5,7 @@ import { MaterialModule } from '../../shared/material-module/material-module';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserAuthentication } from '../../services/user-authentication';
+import { BACKEND_IP } from '../../constant';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class Login {
       password: this.password,
       role: this.selectedRole
     };
-    this.http.post('http://localhost:8000/login', payload).subscribe({
+    this.http.post(BACKEND_IP + 'login', payload).subscribe({
       next: (response:any) => {
         console.log('Login successful:', response);
         const accessToken = response.access_token;
