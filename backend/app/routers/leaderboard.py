@@ -4,9 +4,10 @@ from datetime import datetime
 from collections import defaultdict
 from app.auth import get_current_user
 from app.database.db import SalesDB
-from app.utils.common_methods import ROLE_KPIS, get_last_3_months
+from app.utils.common_methods import ROLE_KPIS, get_last_3_months, MONTH_PREFIXES
 
 router = APIRouter()
+
 
 @router.get("/leaderboard")
 def get_leaderboards(current_user: dict = Depends(get_current_user)):
@@ -26,77 +27,50 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
         relevant_kpis = ROLE_KPIS[role]
         target_months = get_last_3_months()  # [(year, month)] with current month first
 
+        # Get all performance records for this role
         all_records = db.get_records("performance", [("role", "=", role)])
 
-        # Group records by (year, month)
-        records_by_month = defaultdict(list)
+        # Get latest record per user (max date)
+        latest_per_user = {}
         for rec in all_records:
             try:
+                uid = int(rec["user_id"])
                 dt = datetime.strptime(rec["date"], "%Y-%m-%d")
-                ym = (dt.year, dt.month)
-                records_by_month[ym].append(rec)
-            except Exception as e:
-                print(f"Skipping bad record: {e} -- {rec}")
+                if uid not in latest_per_user or datetime.strptime(latest_per_user[uid]["date"], "%Y-%m-%d") < dt:
+                    latest_per_user[uid] = rec
+            except Exception:
                 continue
-
-        # Find last upload date for each month (for previous months only)
-        last_date_by_month = {}
-        for ym, recs in records_by_month.items():
-            max_date = max(datetime.strptime(r["date"], "%Y-%m-%d") for r in recs)
-            last_date_by_month[ym] = max_date.strftime("%Y-%m-%d")
 
         leaderboards = {}
 
+        # For each target month, build leaderboard based on prefix
         for idx, (y, m) in enumerate(target_months):
-            ym = (y, m)
-            month_records = records_by_month.get(ym, [])
+            prefix = MONTH_PREFIXES[idx]
 
-            # For previous to previous and previous months (idx 1 or 2), filter only last date data
-            if idx == 0:
-                # Current month - all MTD data
-                filtered_records = month_records
-            else:
-                last_date = last_date_by_month.get(ym)
-                if last_date:
-                    filtered_records = [r for r in month_records if r["date"] == last_date]
-                else:
-                    filtered_records = []
+            # Aggregate stats per user based on prefix fields in their latest record
+            stats = []
+            for uid, rec in latest_per_user.items():
+                incentive = rec.get(f"{prefix}_incentive", 0) or 0
+                jio_mnp = rec.get("jio_mnp", 0) or 0  # Assuming jio_mnp is not prefixed and relevant for all months
 
-            # Aggregate user stats
-            stats = defaultdict(lambda: {
-                "incentive": 0,
-                "jio_mnp": 0,
-                "metrics": defaultdict(int)
-            })
+                # Sum relevant KPIs with prefix
+                metrics = {kpi: rec.get(f"{prefix}_{kpi}", 0) or 0 for kpi in relevant_kpis}
 
-            for rec in filtered_records:
-                uid = int(rec["user_id"])
-                stats[uid]["incentive"] += rec.get("m0_incentive", 0) or 0
-                stats[uid]["jio_mnp"] += rec.get("jio_mnp", 0) or 0
-                for kpi in relevant_kpis:
-                    stats[uid]["metrics"][kpi] += rec.get(kpi, 0) or 0
+                stats.append((uid, incentive, jio_mnp, metrics))
 
             # Sort by incentive desc, then jio_mnp desc
-            sorted_users = sorted(
-                stats.items(),
-                key=lambda x: (-x[1]["incentive"], -x[1]["jio_mnp"])
-            )
+            sorted_stats = sorted(stats, key=lambda x: (-x[1], -x[2]))
 
             top_5 = []
-
-            for rank, (uid, user_stats) in enumerate(sorted_users[:5], 1):
+            for rank, (uid, incentive, jio_mnp, metrics) in enumerate(sorted_stats[:5], 1):
                 profile_result = db.get_records("users", [("id", "=", uid)])
                 if not profile_result:
-                    continue  # skip if user not found
+                    continue
                 profile = profile_result[0]
 
-                # Construct photo URL/path
                 photo_relative_path = f"/static/assets/profile/{uid}_profile_icon.png"
-                # Absolute file path to check existence
                 abs_photo_path = os.path.join("app", "static", "assets", "profile", f"{uid}_profile_icon.png")
-
                 if not os.path.isfile(abs_photo_path):
-                    # fallback to default
                     photo_relative_path = "/static/assets/profile/default_profile_icon.png"
 
                 top_5.append({
@@ -104,8 +78,9 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
                     "user_id": uid,
                     "user_name": profile.get("name", "Unknown"),
                     "user_photo": photo_relative_path,
-                    "metrics": dict(user_stats["metrics"]),
-                    "incentive": user_stats["incentive"]
+                    "metrics": metrics,
+                    "incentive": incentive,
+                    "jio_mnp": jio_mnp
                 })
 
             leaderboards[f"{y}-{m:02d}"] = top_5

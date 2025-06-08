@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from datetime import datetime
-from collections import defaultdict
 from app.auth import get_current_user
 from app.database.db import SalesDB
-from app.utils.common_methods import ROLE_KPIS, MONTH_MAP, get_last_3_months
+from app.utils.common_methods import ROLE_KPIS, MONTH_MAP, get_last_3_months, MONTH_PREFIXES
 
 router = APIRouter()
+
 
 @router.get("/dashboard")
 def get_dashboard(current_user: dict = Depends(get_current_user)):
@@ -27,84 +27,68 @@ def get_dashboard(current_user: dict = Depends(get_current_user)):
         months = get_last_3_months()  # [(year, month), ...]
         month_labels = [MONTH_MAP[m] for (_, m) in months]
 
-        all_data = db.get_records("performance", [("role", "=", role)])
+        # Fetch all performance records for this user & role
+        all_data = db.get_records("performance", [("user_id", "=", user_id), ("role", "=", role)])
 
-        # STEP 1: Filter latest record per user for each relevant month
-        latest_monthly_records = defaultdict(lambda: {})  # {(user_id, (year, month)) -> record}
+        if not all_data:
+            # No data for user
+            return {
+                "user_id": user_id,
+                "role": role,
+                "kpis": kpis,
+                "performance": [
+                    { "month": label, **{k:0 for k in kpis}, "rank": None }
+                    for label in month_labels
+                ]
+            }
 
-        for row in all_data:
+        # Find the latest record by date for this user
+        latest_record = max(
+            all_data,
+            key=lambda r: datetime.strptime(r["date"], "%Y-%m-%d")
+        )
+
+        # Now build rank for each month (prefix) based on all users' incentives for that month
+        # So fetch all users' latest records for the role (same as your previous approach but only latest per user)
+        all_role_data = db.get_records("performance", [("role", "=", role)])
+
+        # Build latest record per user (max date)
+        latest_per_user = {}
+        for rec in all_role_data:
             try:
-                date_obj = datetime.strptime(row["date"], "%Y-%m-%d")
-                ym = (date_obj.year, date_obj.month)
-                uid = int(row["user_id"])
-
-                if ym in months:
-                    key = (uid, ym)
-                    existing = latest_monthly_records.get(key)
-                    if not existing or datetime.strptime(existing["date"], "%Y-%m-%d") < date_obj:
-                        latest_monthly_records[key] = row
-            except Exception as e:
-                print(f"Skipping row due to error: {e} -- row: {row}")
+                uid = int(rec["user_id"])
+                date_obj = datetime.strptime(rec["date"], "%Y-%m-%d")
+                if uid not in latest_per_user or datetime.strptime(latest_per_user[uid]["date"], "%Y-%m-%d") < date_obj:
+                    latest_per_user[uid] = rec
+            except Exception:
                 continue
 
-        # STEP 2: Build incentive-based rankings
-        rankings = {}
-        for idx, (y, m) in enumerate(months):
-            label = month_labels[idx]
-            month_users = {}
+        # Compute rankings per month prefix
+        rankings = []
+        for prefix in MONTH_PREFIXES:
+            user_incentives = []
+            for uid, rec in latest_per_user.items():
+                inc = rec.get(f"{prefix}_incentive", 0) or 0
+                user_incentives.append((uid, inc))
+            # Sort descending by incentive
+            sorted_users = sorted(user_incentives, key=lambda x: -x[1])
+            user_ranks = {uid: rank + 1 for rank, (uid, _) in enumerate(sorted_users)}
+            rankings.append(user_ranks.get(user_id))
 
-            for (uid, (ry, rm)), record in latest_monthly_records.items():
-                if (ry, rm) == (y, m):
-                    month_users[uid] = {
-                        "incentive": record.get("m0_incentive", 0) or 0,
-                        "jio_mnp": record.get("jio_mnp", 0) or 0
-                    }
-
-            sorted_users = sorted(
-                month_users.items(),
-                key=lambda x: (-x[1]["incentive"], -x[1]["jio_mnp"])
-            )
-
-            for rank, (uid, _) in enumerate(sorted_users, 1):
-                if uid == user_id:
-                    rankings[label] = rank
-                    break
-            else:
-                rankings[label] = None
-
-        # STEP 3: Aggregate KPIs per user per month
-        user_month_data = defaultdict(lambda: defaultdict(int))
-        for row in all_data:
-            try:
-                date_obj = datetime.strptime(row["date"], "%Y-%m-%d")
-                ym = (date_obj.year, date_obj.month)
-                uid = int(row["user_id"])
-                if ym in months:
-                    for k in kpis:
-                        user_month_data[(uid, ym)][k] += row.get(k, 0) or 0
-            except Exception as e:
-                print(f"Skipping row due to error: {e} -- row: {row}")
-                continue
-
-        # STEP 4: Format response
-        perf_output = []
-        for idx, (y, m) in enumerate(months):
-            label = month_labels[idx]
-            kpi_data = user_month_data.get((user_id, (y, m)), {})
-            perf_output.append({
-                "month": label,
-                "metrics": {k: kpi_data.get(k, 0) for k in kpis}
+        # Build response using latest_record for all three months by prefix
+        performance = []
+        for idx, prefix in enumerate(MONTH_PREFIXES):
+            month_label = month_labels[idx]
+            kpi_values = {k: latest_record.get(f"{prefix}_{k}", 0) or 0 for k in kpis}
+            performance.append({
+                "month": month_label,
+                **kpi_values,
+                "rank": rankings[idx]
             })
-
-        rank_output = [
-            {"month": month_labels[idx], "rank": rankings.get(month_labels[idx])}
-            for idx in range(3)
-        ]
 
         return {
             "user_id": user_id,
             "role": role,
             "kpis": kpis,
-            "performance": perf_output,
-            "ranking": rank_output
+            "performance": performance
         }

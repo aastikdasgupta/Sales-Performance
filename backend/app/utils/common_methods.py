@@ -24,3 +24,5 @@ def get_last_3_months():
             year -= 1
         months.append((year, month))
     return months[::-1]
+
+MONTH_PREFIXES = ["llm", "lm", "mtd"]  # Correspond to months from recent to older
