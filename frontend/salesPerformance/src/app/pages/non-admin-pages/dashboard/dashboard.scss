@@ -1,20 +1,77 @@
+:host {
+  display: block;
+  background-color: var(--mat-sys-surface-container-low);
+  padding: 1rem;
+}
+
 table {
-    overflow: auto;
-    width: 100%;
-    display: block; /* Make the table behave like a block element for responsiveness */
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  margin-top: 12px;
+  table-layout: fixed; // Ensures columns don't expand too wide
+}
+
+th, td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--mat-sys-surface-variant);
+  word-wrap: break-word;
+}
+
+th {
+  font-size: 12px; // Smaller header font
+  font-weight: 500;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-primary);
+}
+
+td {
+  font-size: 20px; // Bigger and clearer number font
+  font-weight: 500;
+  color: #222;
+}
+
+mat-card {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: var(--mat-sys-surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: var(--mat-sys-primary);
+  font-weight: 600;
+}
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+button.mat-raised-button {
+  background-color: var(--mat-sys-primary);
+  color: white;
+  font-weight: bold;
+}
+
+button.mat-raised-button:hover {
+  background-color: #cc0000;
+}
+
+/* Optional: Responsive tweak to make the table more flexible */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
   }
-  
-  mat-card {
-    margin: 20px;
-    padding: 20px;
-    // width: 100%;
-    box-sizing: border-box;
+
+  th {
+    font-size: 8px;
   }
-  
-  h2 {
-    margin-bottom: 10px;
+
+  td {
+    font-size: 15px;
   }
-.column-flex{
-    display: flex;
-    flex-direction: column;
 }

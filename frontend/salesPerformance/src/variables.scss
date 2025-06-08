@@ -1,7 +1,14 @@
-:root{
-    --mat-sys-primary-container: #ff8a8a;
-    --mat-sys-primary: #FF0000;
-    --mat-sys-surface: #FFF;
-    --mat-sys-surface-variant: #F0F0F0;
-    --mat-sys-surface-container-low: #F5F5F5;
+:root {
+  // Airtel Primary Colors
+  --mat-sys-primary: #e4000f; // Airtel's official red
+  --mat-sys-primary-container: #ffcccc; // soft red background for highlights
+
+  // Neutral Backgrounds
+  --mat-sys-surface: #ffffff; // clean white
+  --mat-sys-surface-variant: #f4f4f4; // light grey for cards
+  --mat-sys-surface-container-low: #f9f9f9; // slightly off-white for soft sections
+
+  // Optional accents (can be used later)
+  --mat-sys-border: #dddddd;
+  --mat-sys-hover: #ffe6e6; // light hover red
 }

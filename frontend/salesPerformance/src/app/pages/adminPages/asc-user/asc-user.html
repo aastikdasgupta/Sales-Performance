@@ -1,1 +1,103 @@
-<p>asc-user works!</p>
+<div class="asc-user-container">
+
+  <!-- Upload Incentive Scheme Section -->
+  <h2>Upload Incentive Scheme</h2>
+  <form (ngSubmit)="uploadIncentive()" #incentiveForm="ngForm">
+    <div class="upload-section" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+
+      <!-- File Upload -->
+      <div style="display: flex; flex-direction: column;">
+        <label for="fileUpload">Upload Image</label>
+        <input
+          id="fileUpload"
+          type="file"
+          (change)="onFileSelected($event)"
+          accept=".jpg, .jpeg, .png"
+          aria-label="Upload incentive file"
+          required
+        />
+        <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!selectedFile"
+        aria-label="Upload Incentive"
+      >
+        Upload
+      </button>
+    </div>
+  </form>
+
+  <mat-divider class="my-4"></mat-divider>
+
+  <!-- ASC User Management Section -->
+  <h2>ASC User Management</h2>
+
+  <div class="asc-user-controls" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+    <!-- Search Bar -->
+    <mat-form-field appearance="outline" style="flex: 1;">
+      <mat-label>Search Users</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (ngModelChange)="onSearchChange()"
+        placeholder="Enter name or email"
+        aria-label="Search users"
+      />
+    </mat-form-field>
+
+    <!-- Add User Button -->
+    <button mat-raised-button color="primary" (click)="openAddUserDialog()" aria-label="Add New User">
+      Add User
+    </button>
+  </div>
+
+  <!-- Users Table -->
+  <table mat-table [dataSource]="filteredUsers" class="mat-elevation-z8" style="width: 100%;">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let user"> {{ user.name }} </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+    </ng-container>
+
+    <!-- Role Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+      <td mat-cell *matCellDef="let user"> {{ user.role }} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-icon-button color="warn" (click)="deleteUser(user)" aria-label="Delete User">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="editUser(user)" aria-label="Edit User">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Table Rows -->
+    <tr mat-header-row *matHeaderRowDef="['id', 'name', 'phone', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'phone', 'actions'];"></tr>
+  </table>
+
+  <!-- No Results -->
+  <p *ngIf="filteredUsers.length === 0" style="margin-top: 1rem; text-align: center;">
+    No users found matching your search.
+  </p>
+
+</div>

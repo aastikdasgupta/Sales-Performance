@@ -1,3 +1,13 @@
+:host {
+  --primary: var(--mat-sys-primary);
+  --primary-container: var(--mat-sys-primary-container);
+  --surface: var(--mat-sys-surface);
+  --surface-variant: var(--mat-sys-surface-variant);
+  --surface-low: var(--mat-sys-surface-container-low);
+  --text-primary: #222;
+  --text-on-primary: #fff;
+}
+
 .leaderboard-container {
   padding: 16px;
 
@@ -5,6 +15,8 @@
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 16px;
+    color: var(--primary);
+    text-align: center;
   }
 
   .month-tabs {
@@ -14,18 +26,18 @@
     margin-bottom: 24px;
 
     button {
-      background-color: #f8d7da;
+      background-color: var(--primary-container);
       border-radius: 20px;
-      padding: 6px 16px;
-      color: #880e4f;
-      font-weight: 500;
+      padding: 4px 10px;
+      color: var(--primary);
+      font-weight: 400;
       border: 1px solid transparent;
       transition: all 0.3s ease;
 
       &.active {
-        background-color: #c2185b;
-        color: white;
-        border-color: #880e4f;
+        background-color: var(--primary);
+        color: var(--text-on-primary);
+        border-color: var(--primary);
       }
     }
   }
@@ -39,7 +51,7 @@
   .leader-card {
     padding: 16px;
     border-radius: 12px;
-    background-color: #fff0f6;
+    background-color: var(--surface);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,8 +68,8 @@
         position: absolute;
         top: -10px;
         left: -10px;
-        background-color: #d32f2f;
-        color: white;
+        background-color: var(--primary);
+        color: var(--text-on-primary);
         font-weight: bold;
         width: 32px;
         height: 32px;
@@ -70,19 +82,19 @@
       }
 
       .user-photo {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
+        width: 80px;
+        height: 100px;
         object-fit: cover;
         margin-bottom: 8px;
         background-color: white;
-        border: 2px solid #e91e63;
+        border: 2px solid var(--primary);
+        border-radius: 12px;
       }
 
       .user-name {
         font-weight: 500;
         font-size: 16px;
-        color: #333;
+        color: var(--text-primary);
       }
     }
 
@@ -94,16 +106,16 @@
       margin-top: 8px;
 
       .kpi-box {
-        background-color: #fce4ec;
+        background-color: var(--surface-variant);
         padding: 8px 12px;
         border-radius: 6px;
         text-align: center;
         width: 80px;
 
         .kpi-title {
-          font-size: 12px;
-          font-weight: 600;
-          color: #c2185b;
+          font-size: 9px;
+          font-weight: 500;
+          color: var(--primary);
           margin-bottom: 4px;
         }
 
@@ -117,7 +129,7 @@
     .incentive {
       margin-top: 12px;
       font-weight: bold;
-      color: #880e4f;
+      color: var(--primary);
       font-size: 14px;
     }
   }

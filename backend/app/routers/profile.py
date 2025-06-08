@@ -203,3 +203,16 @@ def delete_user(
         db.delete_records("performance", [("user_id", "=", id)])
 
     return JSONResponse(content={"message": f"User with ID {id} deleted successfully."})
+
+
+@router.get("/list-by-role")
+def list_users_by_role(
+    role: str,
+    current_user: dict = Depends(get_current_user)
+):
+    if current_user["role"].lower() != "admin":
+        raise HTTPException(status_code=403, detail="Only admin can view users by role.")
+    
+    with SalesDB() as db:
+        users = db.get_records("users", [("LOWER(role)", "=", role.lower())])
+        return users

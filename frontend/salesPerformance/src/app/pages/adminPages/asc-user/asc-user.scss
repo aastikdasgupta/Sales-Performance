@@ -1,0 +1,142 @@
+/* Airtel-themed ASC User Management Styling */
+
+.asc-user-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background-color: var(--mat-sys-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  h2 {
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--mat-sys-primary);
+    border-left: 4px solid var(--mat-sys-primary);
+    padding-left: 12px;
+  }
+
+  form {
+    .upload-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      background-color: var(--mat-sys-surface-container-low);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+      input[type="file"] {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px dashed var(--mat-sys-primary-container);
+        border-radius: 4px;
+        background-color: var(--mat-sys-surface-variant);
+        cursor: pointer;
+        color: #333;
+
+        &:hover {
+          background-color: var(--mat-sys-surface-container-low);
+        }
+      }
+
+      button {
+        height: 40px;
+        white-space: nowrap;
+        background-color: var(--mat-sys-primary);
+        color: white;
+        border-radius: 6px;
+        padding: 0 16px;
+
+        &:hover {
+          background-color: #cc0000;
+        }
+      }
+
+      span {
+        font-size: 14px;
+        color: var(--mat-sys-primary);
+        font-style: italic;
+      }
+    }
+  }
+
+  .asc-user-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+
+    mat-form-field {
+      flex: 1;
+      min-width: 250px;
+      background-color: var(--mat-sys-surface-container-low);
+      border-radius: 6px;
+    }
+
+    button {
+      white-space: nowrap;
+      height: 40px;
+      background-color: var(--mat-sys-primary);
+      color: white;
+      border-radius: 6px;
+      padding: 0 16px;
+
+      &:hover {
+        background-color: #cc0000;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--mat-sys-surface-variant);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+
+    th,
+    td {
+      text-align: left;
+      padding: 12px;
+    }
+
+    th {
+      background-color: var(--mat-sys-surface-container-low);
+      font-weight: 600;
+      color: #333;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    mat-icon {
+      font-size: 20px;
+      color: var(--mat-sys-primary);
+    }
+
+    button[mat-icon-button] {
+      margin-right: 8px;
+
+      &:hover {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .no-users {
+    margin-top: 16px;
+    font-style: italic;
+    color: #777;
+    text-align: center;
+  }
+
+  .my-4 {
+    margin: 32px 0;
+    border-top: 1px solid var(--mat-sys-primary-container);
+  }
+}

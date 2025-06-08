@@ -1,13 +1,11 @@
-<!-- sidenav.component.html -->
 <nav>
-    <ul>
-      @for (section of sectionsToShow; track section.label) {
-        <li>
-          <a [routerLink]="section.link" routerLinkActive="active-link">
-            {{ section.label }}
-          </a>
-        </li>
-      }
-    </ul>
-  </nav>
-  
+  <ul>
+    <li *ngFor="let section of sectionsToShow">
+      <button 
+        (click)="navigateWithRole(section)"
+        [class.active-link]="selectedLabel === section.label">
+        {{ section.label }}
+      </button>
+    </li>
+  </ul>
+</nav>

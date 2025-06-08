@@ -6,38 +6,38 @@
   
       <!-- Month Column -->
       <ng-container matColumnDef="month">
-        <th mat-header-cell *matHeaderCellDef> Month </th>
-        <td mat-cell *matCellDef="let element"> {{element.month}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.width.%]="20"> Month </th>
+        <td mat-cell *matCellDef="let element" [style.width.%]="20"> {{element.month}} </td>
       </ng-container>
   
       <!-- FWA Column -->
       <ng-container matColumnDef="fwa">
-        <th mat-header-cell *matHeaderCellDef> FWA </th>
-        <td mat-cell *matCellDef="let element"> {{element.fwa}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.width.%]="16"> FWA </th>
+        <td mat-cell *matCellDef="let element" [style.width.%]="16"> {{element.fwa}} </td>
       </ng-container>
-  
+
       <!-- MNP Column -->
       <ng-container matColumnDef="mnp">
-        <th mat-header-cell *matHeaderCellDef> MNP </th>
-        <td mat-cell *matCellDef="let element"> {{element.mnp}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.width.%]="15.2"> MNP </th>
+        <td mat-cell *matCellDef="let element" [style.width.%]="15.2"> {{element.mnp}} </td>
       </ng-container>
-  
+
       <!-- JMNP Column -->
       <ng-container matColumnDef="jmnp">
-        <th mat-header-cell *matHeaderCellDef> JMNP </th>
-        <td mat-cell *matCellDef="let element"> {{element.jioMnp}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.width.%]="15.2"> JMNP </th>
+        <td mat-cell *matCellDef="let element" [style.width.%]="15.2"> {{element.jioMnp}} </td>
       </ng-container>
-  
+
       <!-- MDSO Column -->
       <ng-container matColumnDef="mdsso">
-        <th mat-header-cell *matHeaderCellDef> MDSO </th>
-        <td mat-cell *matCellDef="let element"> {{element.mdsso}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.width.%]="15.2"> MDSO </th>
+        <td mat-cell *matCellDef="let element" [style.width.%]="15.2"> {{element.mdsso}} </td>
       </ng-container>
-  
+
       <!-- SimBillings Column -->
       <ng-container matColumnDef="simBillings">
-        <th mat-header-cell *matHeaderCellDef> Sim-Billings </th>
-        <td mat-cell *matCellDef="let element"> {{element.simBilling}} </td>
+        <th mat-header-cell *matHeaderCellDef [style.width.%]="16"> Sim-Billings </th>
+        <td mat-cell *matCellDef="let element" [style.width.%]="16"> {{element.simBilling}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

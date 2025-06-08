@@ -1,41 +1,108 @@
-.filedrop-width{
-    margin: 5px;
+/* Airtel-themed Upload Form Styling */
+
+.upload-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: var(--mat-sys-surface-container-low);
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
 }
-.whitespace-nowrap {
-    white-space: nowrap;
+
+.filedrop-width {
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.flipdrop-detail{
-    margin:30px;
-    border-radius: 4px;
-    opacity: 1;
-    
+
+.flipdrop-detail {
+  border: 2px dotted var(--mat-sys-primary);
+  border-radius: 12px;
+  padding: 24px;
+  background-color: var(--mat-sys-surface);
+  transition: background-color 0.3s ease;
 }
-.file-drop{
-    text-align: center;
-    padding:50px 0px;
+
+.file-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
 }
-.click-here{
-    color: var(--mat-sys-primary);
-    font-size: 14px;
-    cursor: pointer;
+
+.upload-icon {
+  font-size: 48px;
+  color: var(--mat-sys-primary);
 }
-.upload-data{
-    font-size: 14px;
-    color: #666;
+
+.file-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
 }
-.upload-icon{
-    color:#666;
-    opacity: 1;
+
+.upload-data {
+  font-weight: 500;
+  font-size: 16px;
 }
-.file-upload-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:10px;
+
+.click-here {
+  font-weight: 600;
+  color: var(--mat-sys-primary);
+  cursor: pointer;
+  font-size: 12px;
 }
+
 .file-name {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--mat-sys-primary);
+}
+
+.date-picker {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--mat-sys-primary-container);
+  background-color: var(--mat-sys-surface-variant);
+  color: #222;
+  font-size: 14px;
+}
+
+button.mat-raised-button {
+  background-color: var(--mat-sys-primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+button.mat-raised-button:hover {
+  background-color: #cc0000;
+}
+
+@media (max-width: 600px) {
+  .filedrop-width {
+    padding: 1rem;
   }
+
+  .upload-icon {
+    font-size: 36px;
+  }
+
+  .upload-data {
+    font-size: 14px;
+  }
+
+  .date-picker {
+    width: 100%;
+  }
+
+  button.mat-raised-button {
+    width: 100%;
+  }
+}

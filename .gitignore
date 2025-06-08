@@ -5,6 +5,7 @@ backend/venv/
 frontend/salesPerformance/.angular
 frontend/salesPerformance/.vscode
 frontend/salesPerformance/node_modules
+*node_modules*
 frontend/salesPerformance/editorconfig
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
