@@ -27,8 +27,26 @@
 .login-card {
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Optional: card elevation
+  padding: 2rem;
+  background-color: var(--mat-sys-surface); // Airtel white theme
+  border: 1px solid var(--mat-sys-primary); // Airtel red tint
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); // subtle elevation
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-title-box {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 2px solid var(--mat-sys-primary-container); // Airtel red border
   border-radius: 8px;
+  font-size: 20px;
+  color: var(--mat-sys-primary-container);
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: var(--mat-sys-surface-container-low); // subtle contrast
 }
 
 .login-form {
@@ -40,8 +58,22 @@
   width: 100%;
 }
 
+.login-btn {
+  background-color: var(--mat-sys-primary-container); // Airtel red
+  color: white;
+  font-weight: 600;
+  border-radius: 4px;
+  height: 40px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-primary); // Darker red on hover
+  }
+}
+
 @media (max-width: 480px) {
   .login-card {
     padding: 1rem !important; // More padding on small screens
   }
 }
+

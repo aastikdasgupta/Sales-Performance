@@ -24,12 +24,12 @@ button {
 }
 
 button:hover {
-  background-color: #f0f0f0;
+  background-color: var(--mat-sys-hover);
   color: #000;
 }
 
 button.active-link {
-  background-color: var(--mat-sys-primary); 
+  background-color: var(--mat-sys-primary-container); 
   color: white;
   font-weight: bold;
   border-radius: 8px;

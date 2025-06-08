@@ -18,7 +18,7 @@
 }
 
 .flipdrop-detail {
-  border: 2px dotted var(--mat-sys-primary);
+  border: 2px dotted var(--mat-sys-primary-container);
   border-radius: 12px;
   padding: 24px;
   background-color: var(--mat-sys-surface);
@@ -35,7 +35,7 @@
 
 .upload-icon {
   font-size: 48px;
-  color: var(--mat-sys-primary);
+  color: var(--mat-sys-primary-container);
 }
 
 .file-upload-section {
@@ -53,7 +53,7 @@
 
 .click-here {
   font-weight: 600;
-  color: var(--mat-sys-primary);
+  color: var(--mat-sys-primary-container);
   cursor: pointer;
   font-size: 12px;
 }
@@ -61,20 +61,20 @@
 .file-name {
   font-size: 14px;
   font-style: italic;
-  color: var(--mat-sys-primary);
+  color: var(--mat-sys-primary-container);
 }
 
 .date-picker {
   padding: 8px 12px;
   border-radius: 6px;
-  border: 1px solid var(--mat-sys-primary-container);
+  border: 1px solid var(--mat-sys-primary);
   background-color: var(--mat-sys-surface-variant);
   color: #222;
   font-size: 14px;
 }
 
 button.mat-raised-button {
-  background-color: var(--mat-sys-primary);
+  background-color: var(--mat-sys-primary-container);
   color: white;
   font-weight: 600;
   border-radius: 6px;
