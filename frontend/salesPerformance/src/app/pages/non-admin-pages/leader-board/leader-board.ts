@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MaterialModule } from '../../../shared/material-module/material-module';
 import { CommonModule } from '@angular/common';
+import { BACKEND_IP } from '../../../constant';
 
 @Component({
   selector: 'app-leaderboard',
@@ -19,7 +20,7 @@ export class Leaderboard implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any>('http://localhost:8000/leaderboard').subscribe({
+    this.http.get<any>(BACKEND_IP + 'leaderboard').subscribe({
       next: (res: any) => {
         this.role = res.role;
         this.leaderboards = res.leaderboards;
