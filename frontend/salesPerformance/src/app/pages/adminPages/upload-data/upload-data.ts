@@ -66,7 +66,7 @@ export class UploadData implements OnInit {
     formData.append('date', this.uploadForm.value.selectedDate);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8000/upload-excel', true);
+    xhr.open('POST', BACKEND_IP + 'upload-excel', true);
     xhr.withCredentials = true;
     xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('access_token'));
 
