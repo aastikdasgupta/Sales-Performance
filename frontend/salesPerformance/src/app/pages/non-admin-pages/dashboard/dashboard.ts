@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MaterialModule } from '../../../shared/material-module/material-module';
 import { CommonModule } from '@angular/common';
+import { BACKEND_IP } from '../../../constant';
 
 interface PerformanceData {
   month: string;
@@ -35,7 +36,7 @@ export class Dashboard implements OnInit {
 
   ngOnInit(): void {
     this.isDataLoaded = false; // Initialize loading state
-    this.http.get<any>('http://localhost:8000/dashboard').subscribe((response:any) => {
+    this.http.get<any>(BACKEND_IP + 'dashboard').subscribe((response:any) => {
       this.dataSource = response.performance.map((entry: any) => ({
         month: entry.month,
         fwa: entry.metrics.fwa,
