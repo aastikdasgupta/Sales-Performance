@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MaterialModule } from '../../../shared/material-module/material-module';
+import { BACKEND_IP } from '../../../constant';
 
 @Component({
   selector: 'app-upload-data',
