@@ -41,7 +41,7 @@ export class Dashboard implements OnInit {
         month: entry.month,
         fwa: entry.fwa,
         mnp: entry.mnp,
-        jioMnp: entry.jio_mnp,
+        jioMnp: entry.jmnp,
         mdsso: entry.mdsso,
         simBilling: entry.sim_billing,
       }));
