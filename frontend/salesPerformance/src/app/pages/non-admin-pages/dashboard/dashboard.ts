@@ -46,10 +46,10 @@ export class Dashboard implements OnInit {
         simBilling: entry.sim_billing,
       }));
 
-      this.rankingDisplayedColumns = response.ranking.map((entry: any) => entry.month);
+      this.rankingDisplayedColumns = response.performance.map((entry: any) => entry.month);
 
       // Create a single row object with month: rank (or N/A if rank is null)
-      response.ranking.forEach((entry: any) => {
+      response.performance.forEach((entry: any) => {
         this.rankingRow[entry.month] = entry.rank !== null ? entry.rank : 'N/A';
       });
     });
