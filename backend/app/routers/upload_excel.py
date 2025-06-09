@@ -47,8 +47,7 @@ async def upload_excel(
                 db.add_record("performance", perf)
 
             return {
-                "message": "Excel data uploaded successfully.",
-                "parsed_data": db.get_records("performance")
+                "message": "Excel data uploaded successfully."
             }
 
     except Exception as e:
