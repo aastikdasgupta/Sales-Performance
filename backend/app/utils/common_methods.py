@@ -1,7 +1,7 @@
 from datetime import datetime
 
 ROLE_KPIS = {
-    "ASC": ["mnp", "mdsso", "fwa", "sim_billing", "jio_mnp"],
+    "ASC": ["mnp", "mdsso", "fwa", "sim_billing", "jmnp"],
     "Distributor": ["gross", "mnp", "jpipo", "mdsso", "fwa", "jio_mnp"],
     "Promoter": ["gross", "mnp", "jpipo", "site_visits", "jio_mnp"],
     "XFE": ["mnp", "site_visits", "activations", "jio_mnp"]
