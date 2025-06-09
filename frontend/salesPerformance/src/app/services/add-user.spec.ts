@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserManagement } from './user-management';
+import {AddUserDialogComponent } from './add-user';
 
-describe('UserManagement', () => {
-  let service: UserManagement;
+describe('AddUser', () => {
+  let service: AddUserDialogComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserManagement);
+    service = TestBed.inject(AddUserDialogComponent);
   });
 
   it('should be created', () => {

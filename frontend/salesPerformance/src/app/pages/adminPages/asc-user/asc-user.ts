@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../shared/material-module/material-module';
 import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { AddUserDialogComponent } from '../../../services/add-user'; // Adjust path if needed
 
 @Component({
   selector: 'app-asc-user',
   templateUrl: './asc-user.html',
   styleUrls: ['./asc-user.scss'],
   standalone: true,
-  imports: [CommonModule, MaterialModule, FormsModule],
+  imports: [CommonModule, MaterialModule, FormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule],
 })
 export class AscUser implements OnInit {
   users: any[] = [];
@@ -17,7 +22,7 @@ export class AscUser implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'phone', 'actions'];
 
   profile: any = null;
-  roleToUse: string | null = null;  // will hold temp_role or fallback to sp_role
+  roleToUse: string | null = null;
   check: string | null = null;
 
   selectedFile: File | null = null;
@@ -26,14 +31,15 @@ export class AscUser implements OnInit {
 
   editingUser: any = null;
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
-    // Prefer temp_role set from navigation, fallback to sp_role
     this.roleToUse = sessionStorage.getItem('temp_role') || sessionStorage.getItem('sp_role');
-    this.check = sessionStorage.getItem('temp_role')
+    this.check = sessionStorage.getItem('temp_role');
+
     console.log('Role used for AscUser:', this.roleToUse);
-    console.log('temp_role: ',this.check);
+    console.log('temp_role:', this.check);
 
     if (!this.roleToUse) {
       this.error = 'No role found in session storage';
@@ -66,10 +72,7 @@ export class AscUser implements OnInit {
   }
 
   loadUsersByRole(role: string): void {
-    // Ensure role is lowercase to match backend expectation
     const roleLower = role.toLowerCase();
-
-    // API URL with dynamic role
     const url = `http://localhost:8000/user/profile/list-by-role?role=${roleLower}`;
     console.log('Final API URL:', url);
 
@@ -207,11 +210,32 @@ export class AscUser implements OnInit {
   }
 
   openAddUserDialog(): void {
-    alert('Add User dialog should open here.');
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {
+      width: '400px',
+      data: {
+        role: this.roleToUse
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.addUser(result);
+      }
+    });
   }
 
   editUser(user: any): void {
     this.editingUser = user;
-    alert(`Editing user: ${user.name}`);
+
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {
+      width: '400px',
+      data: { ...user, isEdit: true }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.updateUserByAdmin({ id: user.id, ...result });
+      }
+    });
   }
 }
