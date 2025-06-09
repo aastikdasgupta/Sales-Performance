@@ -39,11 +39,11 @@ export class Dashboard implements OnInit {
     this.http.get<any>(BACKEND_IP + 'dashboard').subscribe((response:any) => {
       this.dataSource = response.performance.map((entry: any) => ({
         month: entry.month,
-        fwa: entry.metrics.fwa,
-        mnp: entry.metrics.mnp,
-        jioMnp: entry.metrics.jio_mnp,
-        mdsso: entry.metrics.mdsso,
-        simBilling: entry.metrics.sim_billing,
+        fwa: entry.fwa,
+        mnp: entry.mnp,
+        jioMnp: entry.jio_mnp,
+        mdsso: entry.mdsso,
+        simBilling: entry.sim_billing,
       }));
 
       this.rankingDisplayedColumns = response.ranking.map((entry: any) => entry.month);
