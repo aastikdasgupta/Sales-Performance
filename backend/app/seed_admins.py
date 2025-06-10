@@ -40,6 +40,7 @@ for i, row in df.iterrows():
     full_name = str(row['Full Name']).strip()
     phone = str(row['RETAILER']).strip()
     alt_phone = str(row['Alternate Number']).strip() if 'Alternate Number' in row else ""
+    role = str(row['Role']).strip()
 
     if len(phone) < 6:
         continue  # skip invalid phone numbers
@@ -52,7 +53,7 @@ for i, row in df.iterrows():
         "photo": None,
         "username": full_name.lower().replace(" ", "")[:12] + str(i),  # unique-ish username
         "password": password,
-        "role": "Admin",
+        "role": role,
         "email": None,
         "phone": phone,
         "alt_phone": alt_phone
