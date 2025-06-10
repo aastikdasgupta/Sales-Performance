@@ -1,11 +1,14 @@
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+import random
+import string
+import pandas as pd
 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from app.database.db import SalesDB
 
+# Original Admin Users
 users_to_seed = [
-    # Admin users
     {
         "name": "Admin One",
         "photo": None,
@@ -23,101 +26,39 @@ users_to_seed = [
         "role": "Admin",
         "email": "admin2@example.com",
         "phone": "8888888888"
-    },
-
-    # Regular users
-    {
-        "name": "Swagat Patel",
-        "photo": None,
-        "username": "swagatp",
-        "password": "7978650309",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544320"
-    },
-    {
-        "name": "Aastik Das Gupta",
-        "photo": None,
-        "username": "aastikd",
-        "password": "9876544321",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544321"
-    },
-    {
-        "name": "Rahul Batavia",
-        "photo": None,
-        "username": "rahulb",
-        "password": "9876544322",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544322"
-    },
-    {
-        "name": "Krish Hablani",
-        "photo": None,
-        "username": "krishh",
-        "password": "9876544323",
-        "role": "Distributor",
-        "email": "",
-        "phone": "9876544323"
-    },
-    {
-        "name": "Rajat Jain",
-        "photo": None,
-        "username": "rajatj",
-        "password": "9876544324",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544324"
-    },
-    {
-        "name": "Trisha Upadhyay",
-        "photo": None,
-        "username": "trishau",
-        "password": "9876544325",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544325"
-    },
-    {
-        "name": "Mansi Sharma",
-        "photo": None,
-        "username": "mansis",
-        "password": "9876544326",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544326"
-    },
-    {
-        "name": "Amartya Sharma",
-        "photo": None,
-        "username": "amartyas",
-        "password": "9876544327",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544327"
-    },
-    {
-        "name": "Arnav Okhade",
-        "photo": None,
-        "username": "arnavo",
-        "password": "9876544328",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544328"
-    },
-    {
-        "name": "Mahesh Manda",
-        "photo": None,
-        "username": "maheshm",
-        "password": "9876544329",
-        "role": "ASC",
-        "email": "",
-        "phone": "9876544329"
     }
 ]
 
+# Load the Excel and extract records
+excel_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Performance_Sheet_.xlsx")
+df = pd.read_excel(excel_path)
+
+# Ensure we only use rows where RETAILER and Full Name exist
+df = df[df['RETAILER'].notna() & df['Full Name'].notna()]
+
+for i, row in df.iterrows():
+    full_name = str(row['Full Name']).strip()
+    phone = str(row['RETAILER']).strip()
+    alt_phone = str(row['Alternate Number']).strip() if 'Alternate Number' in row else ""
+
+    if len(phone) < 6:
+        continue  # skip invalid phone numbers
+
+    # Use last 6 digits of phone for password
+    password = phone[-6:]
+
+    user = {
+        "name": full_name,
+        "photo": None,
+        "username": full_name.lower().replace(" ", "")[:12] + str(i),  # unique-ish username
+        "password": password,
+        "role": "Admin",
+        "email": None,
+        "phone": phone,
+        "alt_phone": alt_phone
+    }
+
+    users_to_seed.append(user)
 
 def seed_users():
     with SalesDB() as db:
@@ -133,7 +74,6 @@ def seed_users():
                     print(f"Updated role for user: {user['name']} to {user['role']}")
                 else:
                     print(f"User {user['name']} already exists with correct role.")
-
 
 if __name__ == "__main__":
     seed_users()

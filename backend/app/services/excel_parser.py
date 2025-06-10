@@ -11,7 +11,7 @@ def parse_excel(file: BytesIO, kpi_date: datetime) -> Dict[str, List[Dict]]:
         perf_df = df["Performance_Sheet"].fillna(0)
         for _, row in perf_df.iterrows():
             performance.append({
-                "user_phone": str(row.get("Mobile Number", "")).strip(),
+                "user_phone": str(row.get("RETAILER", "")).strip(),
                 "date": kpi_date.strftime("%Y-%m-%d"),
                 "alt_phone": row.get("Alternate Number",0),
                 "role": row.get("Role", 0),
