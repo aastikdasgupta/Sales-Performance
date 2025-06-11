@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BACKEND_IP } from '../../../constant';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,7 +27,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>('http://15.207.14.26:8000/user/profile/', { withCredentials: true }).subscribe({
+    this.http.get<any>(BACKEND_IP + 'user/profile/', { withCredentials: true }).subscribe({
       next: data => {
         this.profileForm.patchValue({
           name: data.name,
@@ -56,7 +57,7 @@ export class UserProfileComponent implements OnInit {
     const formData = new FormData();
     if (this.profileForm.get('file')?.value) {
       formData.append('file', this.profileForm.get('file')?.value);
-      this.http.put('http://15.207.14.26:8000/user/profile/photo', formData, { withCredentials: true })
+      this.http.put(BACKEND_IP + 'user/profile/photo', formData, { withCredentials: true })
         .subscribe({
           next: () => console.log('Photo updated'),
           error: err => console.error('Photo update failed', err)

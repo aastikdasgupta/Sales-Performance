@@ -16,7 +16,14 @@ def get_profile(current_user: dict = Depends(get_current_user)):
         profile = db.get_records("users", [("phone", "=", phone)])
         if not profile:
             raise HTTPException(status_code=404, detail="Profile not found.")
-    return profile[0]
+        
+        user = profile[0]
+        return {
+            "name": user.get("name"),
+            "phone": user.get("phone"),
+            "alt_phone": user.get("alt_phone"),  # Make sure this column exists
+            "photo": user.get("photo")
+        }
 
 
 @router.put("/photo")
