@@ -1,0 +1,36 @@
+<div class="profile-container">
+  <h2>User Profile</h2>
+
+  <form [formGroup]="profileForm">
+    <div class="photo-section">
+      <img [src]="profilePhoto || 'assets/default-profile.png'" alt="Profile Photo">
+      <label *ngIf="editMode" class="upload-btn">
+        Upload Photo
+        <input type="file" (change)="onFileChange($event)" hidden>
+      </label>
+    </div>
+
+    <div class="info-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input matInput formControlName="phone" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Alternate Number</mat-label>
+        <input matInput formControlName="alt_phone" [readonly]="!editMode">
+      </mat-form-field>
+    </div>
+
+    <div class="actions">
+      <button mat-flat-button color="primary" *ngIf="!editMode" (click)="enableEdit()">Edit</button>
+      <button mat-flat-button color="accent" *ngIf="editMode" (click)="saveChanges()">Save</button>
+      <button mat-stroked-button color="warn" *ngIf="editMode" (click)="cancelChanges()">Cancel</button>
+    </div>
+  </form>
+</div>
