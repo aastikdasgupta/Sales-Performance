@@ -3,13 +3,17 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule} from '../../../shared/material-module/material-module';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BACKEND_IP } from '../../../constant';
 
 @Component({
   selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  templateUrl: './user-profile.html',
+  styleUrls: ['./user-profile.scss'],
+  imports:[MaterialModule,CommonModule,FormsModule,ReactiveFormsModule]
 })
 export class UserProfileComponent implements OnInit {
   profileForm: FormGroup;
