@@ -8,6 +8,7 @@ from app.routers import upload_incentive
 from app.auth import router as auth_router
 from app.routers import dashboard
 from app.routers import leaderboard
+from app.routers import user-profile
 
 app = FastAPI(debug=True)
 

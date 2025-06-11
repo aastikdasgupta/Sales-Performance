@@ -8,7 +8,7 @@ from app.database.db import SalesDB
 router = APIRouter()
 
 @router.get("/show")
-def get_profile(current_user: dict = Depends(get_current_user)):
+async def get_profile(current_user: dict = Depends(get_current_user)):
     phone = current_user["phone"]
 
     with SalesDB() as db:
