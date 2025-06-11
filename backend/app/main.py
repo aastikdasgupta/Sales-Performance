@@ -23,6 +23,7 @@ app.add_middleware(
 # Include all routers
 app.include_router(auth_router)
 app.include_router(profile.router)
+app.include_router(user-profile.router)
 app.include_router(upload_excel.router)
 app.include_router(upload_incentive.router)
 app.include_router(dashboard.router)

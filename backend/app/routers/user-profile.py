@@ -5,6 +5,8 @@ from typing import Optional
 from app.auth import get_current_user
 from app.database.db import SalesDB
 
+router = APIRouter()
+
 @router.get("/show")
 def get_profile(current_user: dict = Depends(get_current_user)):
     phone = current_user["phone"]
