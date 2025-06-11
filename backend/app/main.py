@@ -8,7 +8,7 @@ from app.routers import upload_incentive
 from app.auth import router as auth_router
 from app.routers import dashboard
 from app.routers import leaderboard
-from app.routers import user-profile
+from app.routers import user_profile
 
 app = FastAPI(debug=True)
 
@@ -24,7 +24,7 @@ app.add_middleware(
 # Include all routers
 app.include_router(auth_router)
 app.include_router(profile.router)
-app.include_router(user-profile.router)
+app.include_router(user_profile.router)
 app.include_router(upload_excel.router)
 app.include_router(upload_incentive.router)
 app.include_router(dashboard.router)
