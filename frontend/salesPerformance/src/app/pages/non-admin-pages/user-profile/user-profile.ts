@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(BACKEND_IP + 'user/profile/', { withCredentials: true }).subscribe({
+    this.http.get<any>(BACKEND_IP + 'show', { withCredentials: true }).subscribe({
       next: data => {
         this.profileForm.patchValue({
           name: data.name,
