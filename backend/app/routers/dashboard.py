@@ -2,10 +2,20 @@ from fastapi import APIRouter, Depends, HTTPException
 from datetime import datetime
 from app.auth import get_current_user
 from app.database.db import SalesDB
-from app.utils.common_methods import ROLE_KPIS, MONTH_MAP, get_last_3_months, MONTH_PREFIXES
+from app.utils.common_methods import ROLE_KPIS, MONTH_MAP, get_last_3_months, get_suffix_months, MONTH_PREFIXES
+import os
 
 router = APIRouter()
 
+# 🔁 Helper function to replace "-" with "NA" recursively
+def replace_dash_with_na(data):
+    if isinstance(data, dict):
+        return {k: replace_dash_with_na(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [replace_dash_with_na(i) for i in data]
+    elif data == "-":
+        return "NA"
+    return data
 
 @router.get("/dashboard")
 def get_dashboard(current_user: dict = Depends(get_current_user)):
@@ -24,35 +34,36 @@ def get_dashboard(current_user: dict = Depends(get_current_user)):
             raise HTTPException(status_code=403, detail=f"No dashboard for role: {role}")
 
         kpis = ROLE_KPIS[role]
-        months = get_last_3_months()  # [(year, month), ...]
+        months = get_last_3_months()
         month_labels = [MONTH_MAP[m] for (_, m) in months]
 
-        # Fetch all performance records for this user & role
         all_data = db.get_records("performance", [("user_id", "=", user_id), ("role", "=", role)])
 
         if not all_data:
-            # No data for user
-            return {
+            response = {
                 "user_id": user_id,
                 "role": role,
                 "kpis": kpis,
                 "performance": [
-                    { "month": label, **{k:0 for k in kpis}, "rank": None }
+                    { "month": label, **{k: 0 for k in kpis}}
                     for label in month_labels
-                ]
+                ],
+                "incentive_performance": [],
+                "zone": user.get("zone"),
+                "distributor": user.get("dtr"),
+                "tsm": user.get("tsm"),
+                "zsm": user.get("zsm"),
+                "incentive_scheme": None
             }
+            return replace_dash_with_na(response)
 
-        # Find the latest record by date for this user
         latest_record = max(
             all_data,
             key=lambda r: datetime.strptime(r["date"], "%Y-%m-%d")
         )
 
-        # Now build rank for each month (prefix) based on all users' incentives for that month
-        # So fetch all users' latest records for the role (same as your previous approach but only latest per user)
         all_role_data = db.get_records("performance", [("role", "=", role)])
 
-        # Build latest record per user (max date)
         latest_per_user = {}
         for rec in all_role_data:
             try:
@@ -63,32 +74,42 @@ def get_dashboard(current_user: dict = Depends(get_current_user)):
             except Exception:
                 continue
 
-        # Compute rankings per month prefix
-        rankings = []
-        for prefix in MONTH_PREFIXES:
-            user_incentives = []
-            for uid, rec in latest_per_user.items():
-                inc = rec.get(f"{prefix}_incentive", 0) or 0
-                user_incentives.append((uid, inc))
-            # Sort descending by incentive
-            sorted_users = sorted(user_incentives, key=lambda x: -x[1])
-            user_ranks = {uid: rank + 1 for rank, (uid, _) in enumerate(sorted_users)}
-            rankings.append(user_ranks.get(user_id))
-
-        # Build response using latest_record for all three months by prefix
         performance = []
         for idx, prefix in enumerate(MONTH_PREFIXES):
             month_label = month_labels[idx]
             kpi_values = {k: latest_record.get(f"{prefix}_{k}", 0) or 0 for k in kpis}
             performance.append({
                 "month": month_label,
-                **kpi_values,
-                "rank": rankings[idx]
+                **kpi_values
             })
 
-        return {
+        incentive_performance = []
+        suffix_months = get_suffix_months()
+        for suffix, (_, _), month_name in reversed(suffix_months):
+            incentive = latest_record.get(f"incentive_{suffix}", 0) or 0
+            rank = latest_record.get(f"rank_{suffix}", None)
+            incentive_performance.append({
+                "month": month_name,
+                "incentive": incentive,
+                "rank": rank
+            })
+
+        latest_year, latest_month = months[-1]
+        filename = f"incentives_{role.lower()}_{latest_month:02d}_{latest_year}.jpg"
+        filepath = f"app/static/assets/incentive/{filename}"
+        incentive_scheme_url = filepath if os.path.exists(filepath) else None
+
+        response = {
             "user_id": user_id,
             "role": role,
             "kpis": kpis,
-            "performance": performance
+            "performance": performance,
+            "incentive_performance": incentive_performance,
+            "zone": user.get("zone"),
+            "distributor": user.get("dtr"),
+            "tsm": user.get("tsm"),
+            "zsm": user.get("zsm"),
+            "incentive_scheme": incentive_scheme_url
         }
+
+        return replace_dash_with_na(response)

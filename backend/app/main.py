@@ -9,17 +9,22 @@ from app.auth import router as auth_router
 from app.routers import dashboard
 from app.routers import leaderboard
 from app.routers import user_profile
+from fastapi.staticfiles import StaticFiles
+import os
 
 app = FastAPI(debug=True)
 
 # CORS settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://15.207.14.26:4200"],
+    allow_origins=["http://13.233.120.130:4200","www.sales-performance.in", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+with SalesDB() as sales_db:
+    pass
 
 # Include all routers
 app.include_router(auth_router)
@@ -29,3 +34,4 @@ app.include_router(upload_excel.router)
 app.include_router(upload_incentive.router)
 app.include_router(dashboard.router)
 app.include_router(leaderboard.router)
+app.mount("/static", StaticFiles(directory=os.path.join("app", "static")), name="static")

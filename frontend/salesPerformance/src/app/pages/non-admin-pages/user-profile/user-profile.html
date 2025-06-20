@@ -1,36 +1,72 @@
-<div class="profile-container">
-  <h2>User Profile</h2>
+<h2 class="title">User Profile</h2>
 
-  <form [formGroup]="profileForm">
-    <div class="photo-section">
-      <img [src]="profilePhoto || 'assets/default-profile.png'" alt="Profile Photo">
-      <label *ngIf="editMode" class="upload-btn">
-        Upload Photo
-        <input type="file" (change)="onFileChange($event)" hidden>
-      </label>
+<form [formGroup]="profileForm">
+  <!-- Row 1: Centered Container for Photo + Buttons (side by side) -->
+  <div class="top-section centered-profile-actions">
+    <!-- Flexbox: Photo left, Buttons right -->
+    <div class="profile-container">
+      <!-- Profile Photo -->
+      <div class="photo-wrapper" (click)="triggerPhotoChange()">
+        <img
+          [src]="profilePhoto"
+          class="profile-photo"
+          alt="Profile Photo"
+          *ngIf="profilePhoto; else placeholder"
+        />
+        <ng-template #placeholder>
+          <div class="profile-photo placeholder">
+            <mat-icon>person</mat-icon>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Buttons stacked vertically -->
+      <div class="button-column">
+        <button class="profile-action-btn" type="button" (click)="triggerPhotoChange()">
+          Update Photo
+        </button>
+        <button class="profile-action-btn" type="button" (click)="toggleAltPhoneEdit()">
+          Update Alt Number
+        </button>
+      </div>
     </div>
 
-    <div class="info-section">
-      <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" readonly>
-      </mat-form-field>
+    <!-- Hidden file input -->
+    <input type="file" #fileInput (change)="onFileChange($event)" hidden />
+  </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Mobile Number</mat-label>
-        <input matInput formControlName="phone" readonly>
-      </mat-form-field>
+  <!-- Fields -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" readonly class="uniform-input" />
+  </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Alternate Number</mat-label>
-        <input matInput formControlName="alt_phone" [readonly]="!editMode">
-      </mat-form-field>
-    </div>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phone" readonly class="uniform-input" />
+  </mat-form-field>
 
-    <div class="actions">
-      <button mat-flat-button color="primary" *ngIf="!editMode" (click)="enableEdit()">Edit</button>
-      <button mat-flat-button color="accent" *ngIf="editMode" (click)="saveChanges()">Save</button>
-      <button mat-stroked-button color="warn" *ngIf="editMode" (click)="cancelChanges()">Cancel</button>
-    </div>
-  </form>
-</div>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Alternate Phone Number</mat-label>
+    <input
+      matInput
+      formControlName="alt_phone"
+      [readonly]="!editAltPhone"
+      class="uniform-input"
+    />
+  </mat-form-field>
+
+  <!-- Save/Cancel Buttons -->
+  <div class="actions" *ngIf="editAltPhone || photoEditMode">
+    <button
+      mat-flat-button
+      class="btn-save"
+      (click)="photoEditMode ? savePhoto() : saveAltPhone()"
+    >
+      Save
+    </button>
+    <button mat-stroked-button class="btn-cancel" (click)="cancelChanges()">
+      Cancel
+    </button>
+  </div>
+</form>

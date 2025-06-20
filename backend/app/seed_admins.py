@@ -1,7 +1,5 @@
 import os
 import sys
-import random
-import string
 import pandas as pd
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -30,10 +28,10 @@ users_to_seed = [
 ]
 
 # Load the Excel and extract records
-excel_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Performance_Sheet_.xlsx")
+excel_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ASC_Users.xlsx")
 df = pd.read_excel(excel_path)
 
-# Ensure we only use rows where RETAILER and Full Name exist
+# Ensure only valid rows are used
 df = df[df['RETAILER'].notna() & df['Full Name'].notna()]
 
 for i, row in df.iterrows():
@@ -43,20 +41,23 @@ for i, row in df.iterrows():
     role = str(row['Role']).strip()
 
     if len(phone) < 6:
-        continue  # skip invalid phone numbers
+        continue  # Skip invalid phone numbers
 
-    # Use last 6 digits of phone for password
     password = phone[-6:]
 
     user = {
         "name": full_name,
         "photo": None,
-        "username": full_name.lower().replace(" ", "")[:12] + str(i),  # unique-ish username
+        "username": full_name.lower().replace(" ", "")[:12] + str(i),
         "password": password,
         "role": role,
         "email": None,
         "phone": phone,
-        "alt_phone": alt_phone
+        "alt_phone": alt_phone,
+        "zone": str(row.get("ZONE", "")).strip(),
+        "dtr": str(row.get("DTR_NAME", "")).strip(),
+        "tsm": str(row.get("TSM NAME", "")).strip(),
+        "zsm": str(row.get("ZSM NAME", "")).strip()
     }
 
     users_to_seed.append(user)
@@ -70,11 +71,15 @@ def seed_users():
                 print(f"Added user: {user['name']}")
             else:
                 existing_user = existing[0]
-                if existing_user["role"] != user["role"]:
-                    db.update_records("users", [("phone", "=", user["phone"])], {"role": user["role"]})
-                    print(f"Updated role for user: {user['name']} to {user['role']}")
+                update_data = {}
+                for field in ["role", "zone", "dtr", "tsm", "zsm"]:
+                    if user.get(field) and user.get(field) != existing_user.get(field):
+                        update_data[field] = user[field]
+                if update_data:
+                    db.update_records("users", [("phone", "=", user["phone"])], update_data)
+                    print(f"Updated user: {user['name']} with {update_data}")
                 else:
-                    print(f"User {user['name']} already exists with correct role.")
+                    print(f"User {user['name']} already exists with correct data.")
 
 if __name__ == "__main__":
     seed_users()

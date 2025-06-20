@@ -1,0 +1,18 @@
+nohup: ignoring input
+INFO:     Started server process [3867]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:35976 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35984 - "GET /login HTTP/1.1" 405 Method Not Allowed
+INFO:     122.177.200.159:43184 - "OPTIONS /login HTTP/1.1" 200 OK
+INFO:     122.177.200.159:43184 - "POST /login HTTP/1.1" 200 OK
+INFO:     122.177.200.159:33430 - "POST /login HTTP/1.1" 200 OK
+INFO:     117.194.1.183:60870 - "OPTIONS /login HTTP/1.1" 200 OK
+INFO:     117.194.1.183:60870 - "POST /login HTTP/1.1" 200 OK
+INFO:     117.194.1.183:60870 - "OPTIONS /dashboard HTTP/1.1" 200 OK
+INFO:     117.194.1.183:60870 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     117.194.1.183:60871 - "OPTIONS /show HTTP/1.1" 200 OK
+INFO:     117.194.1.183:60885 - "GET /show HTTP/1.1" 200 OK
+INFO:     117.194.1.183:61192 - "OPTIONS /show HTTP/1.1" 200 OK
+INFO:     117.194.1.183:61193 - "GET /show HTTP/1.1" 200 OK

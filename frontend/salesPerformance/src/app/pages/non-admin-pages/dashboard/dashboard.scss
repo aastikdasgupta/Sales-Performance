@@ -12,17 +12,48 @@ table {
   table-layout: fixed; // Ensures columns don't expand too wide
 }
 
-th, td {
-  padding: 10px 8px;
+.details-header {
+  font-weight: 500;        
+  font-size: 12px;         
+  color: -var(--mat-sys-primary-container);             
+  padding-right: 12px;
+     
+}
+
+.details-value {
+  font-weight: 500;
+  font-size: 12px;
+  color: #000000;
   text-align: left;
+}
+
+th, td {
+  padding: 8px 3px;
+  text-align: center;
   border-bottom: 1px solid var(--mat-sys-surface-variant);
   word-wrap: break-word;
+}
+
+.month-header-cell {
+  font-weight: 500;
+  font-size: 9.5px;
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-primary-container);
+  text-align: left;
+  padding-left: 16px;
+}
+
+.month-data-cell {
+  font-size: 9.5px;
+  color: var(--mat-sys-primary-container);
+  text-align: left;
+  padding-left: 16px;
 }
 
 th {
   font-size: 12px; // Smaller header font
   font-weight: 500;
-  background-color: var(--mat-sys-primary-container);
+  background-color: var(--mat-sys-primary);
   color: var(--mat-sys-primary-container);
 }
 
@@ -40,6 +71,20 @@ mat-card {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
+.wide-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px 0 20px -31px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: var(--mat-sys-surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+mat-card.wide-card:first-of-type {
+  margin-top: 0; 
+}
+
 h2 {
   margin-bottom: 10px;
   color: var(--mat-sys-primary-container);
@@ -49,6 +94,10 @@ h2 {
 .column-flex {
   display: flex;
   flex-direction: column;
+}
+
+.incentive-table td {
+  font-size: 12px;
 }
 
 button.view-incentive-btn {
@@ -77,6 +126,74 @@ button.view-incentive-btn {
   }
 }
 
+/* Thumbnail + Dialog Styles */
+.thumbnail-container {
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 12px;
+
+  .thumbnail-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .click-hint {
+    font-size: 12px;
+    color: var(--mat-sys-primary-container);
+    margin-top: 6px;
+    user-select: none;
+  }
+}
+
+.download-btn {
+  display: flex;
+  justify-content: center;
+
+  button {
+    background-color: #FF0000;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #cc0000;
+    }
+
+    &:active {
+      background-color: #b30000;
+    }
+  }
+}
+
+/* 📷 Enlarged Incentive Image */
+.incentive-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.incentive-image {
+  max-width: 70%;
+  max-height: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    max-height: 300px;
+  }
+}
 
 /* Optional: Responsive tweak to make the table more flexible */
 @media (max-width: 768px) {
@@ -85,7 +202,7 @@ button.view-incentive-btn {
   }
 
   th {
-    font-size: 8px;
+    font-size: 9.5px;
   }
 
   td {

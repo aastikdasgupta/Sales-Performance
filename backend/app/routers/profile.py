@@ -5,7 +5,7 @@ from typing import Optional
 from app.auth import get_current_user
 from app.database.db import SalesDB
 
-router = APIRouter()
+router = APIRouter(prefix="/user/profile")
 
 @router.put("/photo")
 async def update_own_photo(

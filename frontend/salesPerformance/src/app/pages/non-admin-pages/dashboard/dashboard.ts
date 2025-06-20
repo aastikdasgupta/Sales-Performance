@@ -6,58 +6,104 @@ import { BACKEND_IP } from '../../../constant';
 
 interface PerformanceData {
   month: string;
-  fwa: number;
-  mnp: number;
-  jioMnp: number;
-  mdsso: number;
-  simBilling: number;
-}
-
-interface RankingData {
-  month: string;
-  rank: number | null;
+  fwa: number | string;
+  mnp: number | string;
+  jmnp: number | string;
+  mdsso: number | string;
+  simBilling: number | string;
+  threeMnp: number | string;   // for "3mnp"
+  mnpTgtAct: number | string;  // for "mnp_tgt_act"
 }
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
-  imports:[MaterialModule,CommonModule],
+  standalone: true,
+  imports: [MaterialModule, CommonModule],
 })
 export class Dashboard implements OnInit {
-  isDataLoaded: boolean = false; // Track loading state
-  displayedColumns: string[] = ['month', 'fwa', 'mnp', 'jmnp', 'mdsso', 'simBillings'];
+  isDataLoaded: boolean = false;
+
+  displayedColumns: string[] = [
+    'month',
+    'fwa',
+    'mnp',
+    'jmnp',
+    'mdsso',
+    'simBilling',
+    'threeMnp',
+    'mnpTgtAct'
+  ];
   dataSource: PerformanceData[] = [];
 
   rankingDisplayedColumns: string[] = [];
-  rankingRow: {[month: string]: number | string} = {};  // store ranks in a single row
+  rankingRow: { [month: string]: number | string } = {};
+
+  incentiveDisplayedColumns: string[] = [];
+  incentiveRow: { [month: string]: number | string } = {};
+
+  incentiveSchemeUrl: string | null = null;
+  showIncentiveScheme: boolean = false;
+
+  zone: string | null = null;
+  distributor: string | null = null;
+  tsm: string | null = null;
+  zsm: string | null = null;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.isDataLoaded = false; // Initialize loading state
-    this.http.get<any>(BACKEND_IP + 'dashboard').subscribe((response:any) => {
+    this.isDataLoaded = false;
+
+    this.http.get<any>(BACKEND_IP + 'dashboard').subscribe((response: any) => {
+      console.log('Full dashboard response:', response);
+
+      // Performance data
       this.dataSource = response.performance.map((entry: any) => ({
         month: entry.month,
         fwa: entry.fwa,
         mnp: entry.mnp,
-        jioMnp: entry.jmnp,
+        jmnp: entry.jmnp,
         mdsso: entry.mdsso,
         simBilling: entry.sim_billing,
+        threeMnp: entry['3mnp'],
+        mnpTgtAct: entry['mnp_tgt_act']
       }));
 
-      this.rankingDisplayedColumns = response.performance.map((entry: any) => entry.month);
-
-      // Create a single row object with month: rank (or N/A if rank is null)
-      response.performance.forEach((entry: any) => {
+      // Ranking data - from incentive_performance
+      this.rankingDisplayedColumns = response.incentive_performance.map((entry: any) => entry.month);
+      response.incentive_performance.forEach((entry: any) => {
         this.rankingRow[entry.month] = entry.rank !== null ? entry.rank : 'N/A';
       });
+
+      // Incentive data - from incentive_performance
+      this.incentiveDisplayedColumns = response.incentive_performance.map((entry: any) => entry.month);
+      response.incentive_performance.forEach((entry: any) => {
+        this.incentiveRow[entry.month] = entry.incentive !== undefined ? entry.incentive : 0;
+      });
+
+      // Incentive scheme URL
+      this.incentiveSchemeUrl = response.incentive_scheme
+        ? `${BACKEND_IP}${response.incentive_scheme.replace(/^app\//, '')}`
+        : null;
+      console.log('Incentive Scheme URL:', this.incentiveSchemeUrl);
+
+      // Profile info
+      this.zone = response.zone ?? null;
+      this.distributor = response.distributor ?? null;
+      this.tsm = response.tsm ?? null;
+      this.zsm = response.zsm ?? null;
+
+      this.isDataLoaded = true;
     });
-    this.isDataLoaded = true;
   }
 
   viewIncentiveScheme(): void {
-    // Add your logic here to view the incentive scheme
-    alert("Incentive scheme feature coming soon!");
+    if (this.incentiveSchemeUrl) {
+      this.showIncentiveScheme = !this.showIncentiveScheme;
+    } else {
+      alert('Incentive scheme not available for this month.');
+    }
   }
 }

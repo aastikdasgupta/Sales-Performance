@@ -1,13 +1,11 @@
 import os
 from fastapi import APIRouter, Depends, HTTPException
 from datetime import datetime
-from collections import defaultdict
 from app.auth import get_current_user
 from app.database.db import SalesDB
-from app.utils.common_methods import ROLE_KPIS, get_last_3_months, MONTH_PREFIXES
+from app.utils.common_methods import ROLE_KPIS, get_suffix_months
 
 router = APIRouter()
-
 
 @router.get("/leaderboard")
 def get_leaderboards(current_user: dict = Depends(get_current_user)):
@@ -20,19 +18,25 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
 
         user = users[0]
         role = user["role"]
+        zsm = user["zsm"]
 
         if role not in ROLE_KPIS:
             raise HTTPException(status_code=403, detail=f"No leaderboard for role: {role}")
 
         relevant_kpis = ROLE_KPIS[role]
-        target_months = get_last_3_months()  # [(year, month)] with current month first
 
-        # Get all performance records for this role
-        all_records = db.get_records("performance", [("role", "=", role)])
+        # 🎯 Get all user_ids with same role and same zsm
+        peer_users = db.get_records("users", [("role", "=", role), ("zsm", "=", zsm)])
+        peer_user_ids = set(u["id"] for u in peer_users)
 
-        # Get latest record per user (max date)
+        # 📦 Get all performance records
+        all_perf_records = db.get_records("performance", [])
+        # Filter records only for peer users
+        relevant_records = [rec for rec in all_perf_records if int(rec["user_id"]) in peer_user_ids]
+
+        # 🗂️ Get latest record per user
         latest_per_user = {}
-        for rec in all_records:
+        for rec in relevant_records:
             try:
                 uid = int(rec["user_id"])
                 dt = datetime.strptime(rec["date"], "%Y-%m-%d")
@@ -41,28 +45,47 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
             except Exception:
                 continue
 
+        # 🧩 Work with the last 3 suffixes from get_suffix_months
+        suffix_months = get_suffix_months()[-3:]  # last 3 only
         leaderboards = {}
 
-        # For each target month, build leaderboard based on prefix
-        for idx, (y, m) in enumerate(target_months):
-            prefix = MONTH_PREFIXES[idx]
+        for suffix, (_, _), month_name in reversed(suffix_months):  # reverse to show newest first
+            rank_field = f"rank_{suffix}"
+            metric_prefix = suffix
 
-            # Aggregate stats per user based on prefix fields in their latest record
-            stats = []
-            for uid, rec in latest_per_user.items():
-                incentive = rec.get(f"{prefix}_incentive", 0) or 0
-                jio_mnp = rec.get("jio_mnp", 0) or 0  # Assuming jio_mnp is not prefixed and relevant for all months
+            # Check if all peer users have rank = "-" or None
+            all_blank = True
+            for uid in peer_user_ids:
+                user_rec = latest_per_user.get(uid)
+                if not user_rec:
+                    continue
+                rank = user_rec.get(rank_field)
+                if rank and rank != "-":
+                    all_blank = False
+                    break
 
-                # Sum relevant KPIs with prefix
-                metrics = {kpi: rec.get(f"{prefix}_{kpi}", 0) or 0 for kpi in relevant_kpis}
+            if all_blank:
+                continue  # Skip this month, no valid ranks
 
-                stats.append((uid, incentive, jio_mnp, metrics))
+            # Build leaderboard entries with valid ranks only
+            valid_stats = []
+            for uid in peer_user_ids:
+                rec = latest_per_user.get(uid)
+                if not rec:
+                    continue
+                raw_rank = rec.get(rank_field)
+                if not raw_rank or raw_rank == "-":
+                    continue
+                try:
+                    rank_num = int(str(raw_rank).split("/")[0])
+                except:
+                    continue
 
-            # Sort by incentive desc, then jio_mnp desc
-            sorted_stats = sorted(stats, key=lambda x: (-x[1], -x[2]))
+                metrics = {
+                    kpi: rec.get(f"{metric_prefix}_{kpi}", 0) or 0
+                    for kpi in relevant_kpis
+                }
 
-            top_5 = []
-            for rank, (uid, incentive, jio_mnp, metrics) in enumerate(sorted_stats[:5], 1):
                 profile_result = db.get_records("users", [("id", "=", uid)])
                 if not profile_result:
                     continue
@@ -73,19 +96,30 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
                 if not os.path.isfile(abs_photo_path):
                     photo_relative_path = "/static/assets/profile/default_profile_icon.png"
 
-                top_5.append({
-                    "rank": rank,
+                valid_stats.append({
+                    "rank_value": rank_num,
                     "user_id": uid,
                     "user_name": profile.get("name", "Unknown"),
                     "user_photo": photo_relative_path,
                     "metrics": metrics,
-                    "incentive": incentive,
-                    "jio_mnp": jio_mnp
+                    "raw_rank": raw_rank
                 })
 
-            leaderboards[f"{y}-{m:02d}"] = top_5
+            # Sort by rank and select top 5
+            sorted_top_5 = sorted(valid_stats, key=lambda x: x["rank_value"])[:5]
+
+            # Clean up rank_value before returning
+            for i, entry in enumerate(sorted_top_5, 1):
+                entry["rank"] = i
+                del entry["rank_value"]
+
+            leaderboards[month_name] = sorted_top_5
+
+        if not leaderboards:
+            return { "leaderboards": "Leaderboard not yet available!" }
 
         return {
             "role": role,
+            "zsm": zsm,
             "leaderboards": leaderboards
         }

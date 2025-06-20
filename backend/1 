@@ -1,0 +1,194 @@
+nohup: ignoring input
+INFO:     Started server process [217929]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     117.194.9.181:50580 - "POST /login HTTP/1.1" 200 OK
+INFO:     117.194.9.181:50590 - "GET /leaderboard HTTP/1.1" 200 OK
+INFO:     117.194.9.181:50622 - "GET /login HTTP/1.1" 405 Method Not Allowed
+INFO:     117.194.9.181:50622 - "POST /login HTTP/1.1" 200 OK
+INFO:     106.215.146.218:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.215.146.218:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:50640 - "GET /leaderboard HTTP/1.1" 200 OK
+INFO:     106.215.146.218:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.215.146.218:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.202.255:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.202.255:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     117.194.9.181:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     117.194.9.181:0 - "GET /dashboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     152.53.248.175:53012 - "CONNECT www.google.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     45.131.155.254:48838 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     3.111.209.182:10877 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:44321 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:45241 - "GET /api/api-docs/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:53298 - "GET /api/__swagger__/ HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:3105 - "GET /api/doc.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:60996 - "GET /webjars/swagger-ui/index.html/swagger-ui/swagger-ui.js HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:12265 - "GET /api/apidocs/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:46785 - "GET /swagger/swagger-ui.js HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:35760 - "GET /swagger-ui/swagger-ui/swagger-ui-bundle.js HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:14428 - "GET /api/swagger/static/index.html HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:4335 - "GET /api/swagger-ui/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:11609 - "GET /api/index.html HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:40754 - "GET /api-doc/api/doc HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:37311 - "GET /apispec_1.json HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:7421 - "GET /_swagger_/ HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:45241 - "GET /swagger HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:53298 - "GET /webjars/swagger-ui/swagger-ui-bundle.js HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:3105 - "GET /doc/ HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:60996 - "GET /swagger-ui/swagger-ui-standalone-preset.js HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:12265 - "GET /docs HTTP/1.1" 200 OK
+INFO:     3.6.152.43:46785 - "GET /api/swagger-resources/restservices/v2/api-docs HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:14428 - "GET /apidoc HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:35760 - "GET /swagger/ui/index HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:40754 - "GET /api/swagger/ui/index HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:11609 - "GET /swagger-ui.html HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:4335 - "GET /api/swagger_doc.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:40576 - "GET /swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:58937 - "GET /api/_swagger_/ HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:54239 - "GET /api/swagger-ui/api-docs HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:36317 - "GET /api-doc HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:2816 - "GET /apidocs HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:59220 - "GET /swagger-ui/springfox.js HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:9293 - "GET /api/doc.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:12833 - "GET /__swagger__/ HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:34958 - "GET /api/v1/swagger-ui/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:17911 - "GET /api/swagger.yml HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:58424 - "GET /swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:4525 - "GET /swagger2.json HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:18036 - "GET /api-docs/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:41369 - "GET /api/api-docs HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:25993 - "GET /swagger/v1/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:20667 - "GET /api/swagger-resources HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:28245 - "GET /api/docs/ HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:7421 - "GET /api/swagger HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:28245 - "GET /api/swagger/swagger-ui.html HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:7421 - "GET /swagger/ui/swagger-ui.js HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:20667 - "GET /api/swagger-ui/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:41369 - "GET /swagger/swagger-ui.html HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:25993 - "GET /api/swagger/index.html HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:20667 - "GET /api/spec/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:7421 - "GET /docs/ HTTP/1.1" 307 Temporary Redirect
+INFO:     3.6.152.43:28245 - "GET /api/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:4525 - "GET /api/v1/swagger-ui/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:18036 - "GET /api-docs/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:34958 - "GET /api/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:12833 - "GET /api_docs HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:2816 - "GET /api/spec/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:17911 - "GET /swagger/v1/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:58424 - "GET /swagger/index.html HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:36317 - "GET /api/swagger-ui.html HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:9293 - "GET /docu HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:59220 - "GET /swagger-ui.js HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:54239 - "GET /api/apidocs HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:58937 - "GET /api/api-docs/swagger.yaml HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:41369 - "GET /api/apidocs/swagger.json HTTP/1.1" 404 Not Found
+INFO:     3.111.209.182:40576 - "GET /swagger-resources/restservices/v2/api-docs HTTP/1.1" 404 Not Found
+INFO:     3.6.152.43:7421 - "GET /docs HTTP/1.1" 200 OK
+INFO:     49.42.222.23:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     49.42.222.23:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     49.42.222.23:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     49.42.222.23:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     152.53.248.175:40556 - "CONNECT www.google.com%3A443 HTTP/1.1" 404 Not Found
+INFO:     223.231.202.247:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.202.247:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.202.247:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     223.231.202.247:0 - "GET /dashboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     106.222.186.137:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.222.186.137:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.215.146.218:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.215.146.218:0 - "GET /dashboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     27.60.252.213:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     27.60.252.213:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     27.60.252.213:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     27.60.252.213:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     152.53.248.175:34856 - "CONNECT www.google.com%3A443 HTTP/1.1" 404 Not Found
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /static/assets/incentive/incentives_asc_06_2025.jpg HTTP/1.0" 304 Not Modified
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.231.228.82:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.215.145.107:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.215.145.107:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     27.60.138.213:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     27.60.138.213:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     27.60.138.213:0 - "GET /static/assets/incentive/incentives_asc_06_2025.jpg HTTP/1.0" 200 OK
+INFO:     27.60.138.213:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     27.60.138.213:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     27.60.138.213:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     34.72.176.129:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     20.118.32.47:36480 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     106.222.186.222:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.222.186.222:0 - "GET /dashboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     106.222.191.83:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.222.191.83:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     152.53.248.175:47654 - "CONNECT www.google.com%3A443 HTTP/1.1" 404 Not Found
+INFO:     152.58.119.144:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     152.58.119.144:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     152.58.119.144:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /static/assets/incentive/incentives_asc_06_2025.jpg HTTP/1.0" 304 Not Modified
+INFO:     180.151.18.120:53757 - "POST /login HTTP/1.1" 200 OK
+INFO:     180.151.18.120:53772 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     180.151.18.120:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.222.186.237:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.222.186.237:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.222.186.237:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.222.186.237:0 - "GET /dashboard HTTP/1.0" 200 OK

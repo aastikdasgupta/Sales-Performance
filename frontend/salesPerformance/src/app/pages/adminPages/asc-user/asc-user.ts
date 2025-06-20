@@ -8,17 +8,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AddUserDialogComponent } from '../../../services/add-user'; // Adjust path if needed
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { BACKEND_IP } from '../../../constant';
 
 @Component({
   selector: 'app-asc-user',
   templateUrl: './asc-user.html',
   styleUrls: ['./asc-user.scss'],
   standalone: true,
-  imports: [CommonModule, MaterialModule, FormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [CommonModule, MaterialModule, FormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatPaginatorModule],
 })
 export class AscUser implements OnInit {
   users: any[] = [];
   filteredUsers: any[] = [];
+  paginatedUsers: any[] = [];
+
   displayedColumns: string[] = ['id', 'name', 'phone', 'actions'];
 
   profile: any = null;
@@ -31,15 +35,15 @@ export class AscUser implements OnInit {
 
   editingUser: any = null;
 
+  pageSize = 10;
+  currentPage = 0;
+
   private http = inject(HttpClient);
   private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.roleToUse = sessionStorage.getItem('temp_role') || sessionStorage.getItem('sp_role');
     this.check = sessionStorage.getItem('temp_role');
-
-    console.log('Role used for AscUser:', this.roleToUse);
-    console.log('temp_role:', this.check);
 
     if (!this.roleToUse) {
       this.error = 'No role found in session storage';
@@ -73,13 +77,13 @@ export class AscUser implements OnInit {
 
   loadUsersByRole(role: string): void {
     const roleLower = role.toLowerCase();
-    const url = `http://localhost:8000/user/profile/list-by-role?role=${roleLower}`;
-    console.log('Final API URL:', url);
+    const url = BACKEND_IP + `user/profile/list-by-role?role=${roleLower}`;
+    console.log(url);
 
     this.http.get(url, this.getTokenHeader()).subscribe({
       next: (res: any) => {
         this.users = res.users || res;
-        this.applyFilter();
+        this.applyFilter(); // Apply filtering and pagination
       },
       error: (err: any) => {
         this.error = 'Failed to load users';
@@ -89,17 +93,31 @@ export class AscUser implements OnInit {
   }
 
   applyFilter(): void {
-    if (!this.searchText) {
-      this.filteredUsers = this.users.slice();
-      return;
+    const filter = this.searchText.toLowerCase();
+
+    if (!filter) {
+      this.filteredUsers = [...this.users];
+    } else {
+      this.filteredUsers = this.users.filter(
+        (u) =>
+          (u.name && u.name.toLowerCase().includes(filter)) ||
+          (u.email && u.email.toLowerCase().includes(filter))
+      );
     }
 
-    const filter = this.searchText.toLowerCase();
-    this.filteredUsers = this.users.filter(
-      (u) =>
-        (u.name && u.name.toLowerCase().includes(filter)) ||
-        (u.email && u.email.toLowerCase().includes(filter))
-    );
+    this.currentPage = 0; // reset to first page
+    this.updatePaginatedUsers();
+  }
+
+  updatePaginatedUsers(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedUsers = this.filteredUsers.slice(startIndex, endIndex);
+  }
+
+  onPageChange(pageIndex: number): void {
+    this.currentPage = pageIndex;
+    this.updatePaginatedUsers();
   }
 
   onSearchChange(): void {
@@ -119,18 +137,22 @@ export class AscUser implements OnInit {
       return;
     }
 
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}`;
+
     const formData = new FormData();
     formData.append('file', this.selectedFile);
     formData.append('role', this.roleToUse);
+    formData.append('date', formattedDate);
 
-    this.http.post('/user/incentive/upload', formData, this.getTokenHeader()).subscribe({
+    this.http.post(BACKEND_IP + 'upload-incentive', formData, this.getTokenHeader()).subscribe({
       next: () => {
         this.error = '';
-        alert('Incentive uploaded successfully');
+        alert('Incentive image uploaded successfully');
         this.selectedFile = null;
       },
       error: (err: any) => {
-        this.error = 'Failed to upload incentive';
+        this.error = err?.error?.detail || 'Failed to upload incentive image';
         console.error(err);
       },
     });
@@ -154,7 +176,7 @@ export class AscUser implements OnInit {
     if (payload.email) formData.append('email', payload.email);
     if (payload.file) formData.append('file', payload.file);
 
-    this.http.post('/user/profile/add', formData, this.getTokenHeader()).subscribe({
+    this.http.post(BACKEND_IP + '/user/profile/add', formData, this.getTokenHeader()).subscribe({
       next: () => this.loadUsersByRole(this.roleToUse!),
       error: (err: any) => {
         this.error = 'Failed to add user';
@@ -179,7 +201,7 @@ export class AscUser implements OnInit {
     if (payload.role) formData.append('role', payload.role);
     if (payload.file) formData.append('file', payload.file);
 
-    this.http.put('/user/profile/admin', formData, this.getTokenHeader()).subscribe({
+    this.http.put(BACKEND_IP + '/user/profile/admin', formData, this.getTokenHeader()).subscribe({
       next: () => this.loadUsersByRole(this.roleToUse!),
       error: (err: any) => {
         this.error = 'Admin update failed';
@@ -196,7 +218,7 @@ export class AscUser implements OnInit {
     formData.append('id', id.toString());
 
     this.http
-      .delete('/user/profile/delete', {
+      .delete(BACKEND_IP + '/user/profile/delete', {
         headers: this.getTokenHeader().headers,
         body: formData,
       })
