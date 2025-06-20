@@ -1,7 +1,6 @@
 :host {
   display: block;
   background-color: var(--mat-sys-surface-container-low);
-  padding: 1rem;
 }
 
 table {
@@ -13,11 +12,10 @@ table {
 }
 
 .details-header {
-  font-weight: 500;        
-  font-size: 12px;         
-  color: -var(--mat-sys-primary-container);             
+  font-weight: 500;
+  font-size: 12px;
+  color: -var(--mat-sys-primary-container);
   padding-right: 12px;
-     
 }
 
 .details-value {
@@ -27,7 +25,8 @@ table {
   text-align: left;
 }
 
-th, td {
+th,
+td {
   padding: 8px 3px;
   text-align: center;
   border-bottom: 1px solid var(--mat-sys-surface-variant);
@@ -40,14 +39,14 @@ th, td {
   background-color: var(--mat-sys-primary);
   color: var(--mat-sys-primary-container);
   text-align: left;
-  padding-left: 16px;
+  padding-left: 5px;
 }
 
 .month-data-cell {
   font-size: 9.5px;
   color: var(--mat-sys-primary-container);
   text-align: left;
-  padding-left: 16px;
+  padding-left: 5px;
 }
 
 th {
@@ -58,7 +57,7 @@ th {
 }
 
 td {
-  font-size: 20px; // Bigger and clearer number font
+  font-size: 16px; // Bigger and clearer number font
   font-weight: 500;
   color: #222;
 }
@@ -73,8 +72,6 @@ mat-card {
 
 .wide-card {
   width: 100%;
-  max-width: 1200px;
-  margin: 20px 0 20px -31px;
   padding: 20px;
   border-radius: 12px;
   background-color: var(--mat-sys-surface);
@@ -82,7 +79,7 @@ mat-card {
 }
 
 mat-card.wide-card:first-of-type {
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 h2 {
@@ -101,7 +98,7 @@ h2 {
 }
 
 button.view-incentive-btn {
-  background-color: #FF0000; // Airtel red
+  background-color: #ff0000; // Airtel red
   color: #ffffff;
   font-weight: 600;
   font-size: 16px;
@@ -157,7 +154,7 @@ button.view-incentive-btn {
   justify-content: center;
 
   button {
-    background-color: #FF0000;
+    background-color: #ff0000;
     color: #fff;
     font-weight: 600;
     border-radius: 8px;
