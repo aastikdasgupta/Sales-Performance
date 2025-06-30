@@ -1,0 +1,127 @@
+<div class="column-flex" *ngIf="isDataLoaded">
+
+  <!-- Zone / Distributor / TSM / ZSM Details (Line by Line) -->
+  <mat-card class="wide-card">
+    <h2>Details</h2>
+    <table class="details-table">
+      <tr>
+        <th class="details-header">Zone:</th>
+        <td class="details-value">{{zone}}</td>
+      </tr>
+      <tr>
+        <th class="details-header">Distributor:</th>
+        <td class="details-value">{{distributor}}</td>
+      </tr>
+      <tr>
+        <th class="details-header">TSM:</th>
+        <td class="details-value">{{tsm}}</td>
+      </tr>
+      <tr>
+        <th class="details-header">ZSM:</th>
+        <td class="details-value">{{zsm}}</td>
+      </tr>
+    </table>
+  </mat-card>
+
+  <!-- Performance Table -->
+  <mat-card class="wide-card">
+    <h2>Performance</h2>
+    <div class="table-scroll-container" style="width: 100%; overflow-x: auto; border: 1px solid red;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"
+        style="table-layout: fixed; width: auto; min-width: 600px;">
+
+        <!-- Month Column -->
+        <ng-container matColumnDef="month">
+          <th mat-header-cell *matHeaderCellDef style="width: 180px;" class="month-header-cell"> Month </th>
+          <td mat-cell *matCellDef="let element" style="width: 180px;" class="month-data-cell"> {{element.month}} </td>
+        </ng-container>
+
+        <!-- MNP Column -->
+        <ng-container matColumnDef="mnp">
+          <th mat-header-cell *matHeaderCellDef style="width: 180px;"> MNP </th>
+          <td mat-cell *matCellDef="let element" style="width: 180px;"> {{element.mnp}} </td>
+        </ng-container>
+
+        <!-- JMNP Column -->
+        <ng-container matColumnDef="jmnp">
+          <th mat-header-cell *matHeaderCellDef style="width: 140px;"> M4 Decay </th>
+          <td mat-cell *matCellDef="let element" style="width: 140px;"> {{element.jmnp}} </td>
+        </ng-container>
+
+        <!-- MDSSO Column -->
+        <ng-container matColumnDef="mdsso">
+          <th mat-header-cell *matHeaderCellDef style="width: 140px;"> MDSSO </th>
+          <td mat-cell *matCellDef="let element" style="width: 140px;"> {{element.mdsso}} </td>
+        </ng-container>
+
+        <!-- FWA Column -->
+        <ng-container matColumnDef="fwa">
+          <th mat-header-cell *matHeaderCellDef style="width: 140px;"> FWA </th>
+          <td mat-cell *matCellDef="let element" style="width: 140px;"> {{element.fwa}} </td>
+        </ng-container>
+
+        <!-- Billings Column -->
+        <ng-container matColumnDef="simBilling">
+          <th mat-header-cell *matHeaderCellDef style="width: 210px;"> Billings Tgt vs Ach </th>
+          <td mat-cell *matCellDef="let element" style="width: 330px;"> {{element.simBilling}} </td>
+        </ng-container>
+
+        <!-- 3MNP Column -->
+        <ng-container matColumnDef="threeMnp">
+          <th mat-header-cell *matHeaderCellDef style="width: 210px;"> > 3MNP Days </th>
+          <td mat-cell *matCellDef="let element" style="width: 210px;"> {{element.threeMnp}} </td>
+        </ng-container>
+
+        <!-- MNP Target Achievement Column -->
+        <ng-container matColumnDef="mnpTgtAct">
+          <th mat-header-cell *matHeaderCellDef style="width: 240px;"> MNP Tgt vs Ach </th>
+          <td mat-cell *matCellDef="let element" style="width: 240px;"> {{element.mnpTgtAct}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card>
+
+  <!-- Ranking (Before Incentive) -->
+  <mat-card>
+    <h2>Ranking</h2>
+    <table mat-table [dataSource]="[rankingRow]" class="mat-elevation-z8">
+      <ng-container *ngFor="let column of rankingDisplayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let row"> {{row[column]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="rankingDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: rankingDisplayedColumns;"></tr>
+    </table>
+  </mat-card>
+
+  <!-- Incentive -->
+  <mat-card>
+    <h2>Incentive</h2>
+    <table mat-table [dataSource]="[incentiveRow]" class="mat-elevation-z8 incentive-table">
+      <ng-container *ngFor="let column of incentiveDisplayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let row"> ₹{{row[column]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="incentiveDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: incentiveDisplayedColumns;"></tr>
+    </table>
+  </mat-card>
+
+  <!-- Incentive Scheme Button -->
+  <mat-card>
+    <button mat-raised-button class="view-incentive-btn" (click)="viewIncentiveScheme()">
+      VIEW INCENTIVE SCHEME
+    </button>
+  </mat-card>
+
+  <!-- Incentive Scheme Image -->
+  <div *ngIf="showIncentiveScheme" class="incentive-image-container">
+    <img [src]="incentiveSchemeUrl" alt="Incentive Scheme" class="incentive-image" />
+  </div>
+
+</div>

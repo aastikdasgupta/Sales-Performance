@@ -3,9 +3,8 @@ from dateutil.relativedelta import relativedelta
 
 ROLE_KPIS = {
     "ASC": ["mnp", "mdsso", "fwa", "sim_billing", "jmnp", "3mnp", "mnp_tgt_act"],
-    "Distributor": ["gross", "mnp", "jpipo", "mdsso", "fwa", "jio_mnp"],
-    "Promoter": ["gross", "mnp", "jpipo", "site_visits", "jio_mnp"],
-    "XFE": ["mnp", "site_visits", "activations", "jio_mnp"]
+    "Distributor": ["gross", "mnp", "trade_gross", "trade_mn", "ds", "pipo", "fwa", "visits_5g"],
+    "Promoter": ["gross", "mnp", "jpipo", "site_visits", "jio_mnp"]
 }
 
 MONTH_MAP = {

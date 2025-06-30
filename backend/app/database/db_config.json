@@ -52,5 +52,27 @@
     "incentive_3lm TEXT",
     "incentive_llm TEXT",
     "incentive_lm TEXT"
-  ]
+  ],
+
+  "performance_dtr": [
+  "id INTEGER PRIMARY KEY AUTOINCREMENT",
+  "user_id INTEGER",
+  "date TEXT",
+
+  "llm_gross TEXT", "llm_mnp TEXT", "llm_trade_gross TEXT", "llm_trade_mnp TEXT", "llm_stock TEXT", "llm_ds TEXT", "llm_pipo TEXT", "llm_fwa TEXT", "llm_5g_site TEXT",
+  "lm_gross TEXT", "lm_mnp TEXT", "lm_trade_gross TEXT", "lm_trade_mnp TEXT", "lm_stock TEXT", "lm_ds TEXT", "lm_pipo TEXT", "lm_fwa TEXT", "lm_5g_site TEXT",
+  "mtd_gross TEXT", "mtd_mnp TEXT", "mtd_trade_gross TEXT", "mtd_trade_mnp TEXT", "mtd_stock TEXT", "mtd_ds TEXT", "mtd_pipo TEXT", "mtd_fwa TEXT", "mtd_5g_site TEXT",
+
+  "llm_asc_norms TEXT", "llm_gt_sso TEXT", "llm_dsso TEXT", "llm_mdsso TEXT", "llm_sim_billing TEXT", "llm_m4_decay TEXT", "llm_auto_refill TEXT", "llm_tgt_vs_ach_4gmnp TEXT",
+  "lm_asc_norms TEXT", "lm_gt_sso TEXT", "lm_dsso TEXT", "lm_mdsso TEXT", "lm_sim_billing TEXT", "lm_m4_decay TEXT", "lm_auto_refill TEXT", "lm_tgt_vs_ach_4gmnp TEXT",
+  "mtd_asc_norms TEXT", "mtd_gt_sso TEXT", "mtd_dsso TEXT", "mtd_mdsso TEXT", "mtd_sim_billing TEXT", "mtd_m4_decay TEXT", "mtd_auto_refill TEXT", "mtd_tgt_vs_ach_4gmnp TEXT",
+  
+  "incentive_tdp_5lm TEXT", "incentive_pli_5lm TEXT", "incentive_total_5lm TEXT",
+  "incentive_tdp_4lm TEXT", "incentive_pli_4lm TEXT", "incentive_total_4lm TEXT",
+  "incentive_tdp_3lm TEXT", "incentive_pli_3lm TEXT", "incentive_total_3lm TEXT",
+  "incentive_tdp_llm TEXT", "incentive_pli_llm TEXT", "incentive_total_llm TEXT",
+  "incentive_tdp_lm TEXT", "incentive_pli_lm TEXT", "incentive_total_lm TEXT",
+
+  "rank_5lm TEXT", "rank_4lm TEXT", "rank_3lm TEXT", "rank_llm TEXT", "rank_lm TEXT"
+]
 }

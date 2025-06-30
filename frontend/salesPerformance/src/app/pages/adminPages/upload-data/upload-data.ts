@@ -18,12 +18,13 @@ export class UploadData implements OnInit {
   selectedFileName: string = '';
   private _snackBar = inject(MatSnackBar);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.uploadForm = this.fb.group({
       file: [null, Validators.required],
       selectedDate: ['', Validators.required],
+      role: ['', Validators.required],
     });
   }
 
@@ -56,7 +57,6 @@ export class UploadData implements OnInit {
     this.uploadForm.patchValue({ file: selectedFile });
     this.uploadForm.get('file')?.updateValueAndValidity();
     this.selectedFileName = selectedFile.name;
-    console.log('Selected File:', selectedFile);
   }
 
   uploadFile() {
@@ -65,6 +65,10 @@ export class UploadData implements OnInit {
     const formData = new FormData();
     formData.append('file', this.uploadForm.value.file);
     formData.append('date', this.uploadForm.value.selectedDate);
+    formData.append('role', this.uploadForm.value.role);
+
+    console.log('Uploading with date:', this.uploadForm.value.selectedDate);
+    console.log('Uploading with role:', this.uploadForm.value.role);
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', BACKEND_IP + 'upload-excel', true);

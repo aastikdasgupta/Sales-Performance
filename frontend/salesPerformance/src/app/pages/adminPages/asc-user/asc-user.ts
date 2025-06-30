@@ -78,7 +78,6 @@ export class AscUser implements OnInit {
   loadUsersByRole(role: string): void {
     const roleLower = role.toLowerCase();
     const url = BACKEND_IP + `user/profile/list-by-role?role=${roleLower}`;
-    console.log(url);
 
     this.http.get(url, this.getTokenHeader()).subscribe({
       next: (res: any) => {

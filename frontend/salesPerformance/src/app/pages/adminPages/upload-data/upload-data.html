@@ -10,6 +10,14 @@
             <div class="file-upload-section">
                 <span class="upload-data">Drag and drop your file here or click to select</span>
                 <input #fileInput type="file" name="fileSel" style="display: none;" (change)="fileDroppedEvent($event)"/>
+                <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="asc">ASC</mat-option>
+                    <mat-option value="distributor">Distributor</mat-option>
+                    <mat-option value="promoter">Promoter</mat-option>
+                </mat-select>
+                </mat-form-field>
                 <input type="date" class="date-picker" name="selectedDate"  required formControlName="selectedDate">
                 <span class="click-here" (click)="clearSelection(fileInput);fileInput.click();">
                     Click here to browse and upload file</span>

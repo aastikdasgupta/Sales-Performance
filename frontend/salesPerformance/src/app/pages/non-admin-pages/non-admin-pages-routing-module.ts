@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Dashboard } from './dashboard/dashboard';
+import { DashboardWrapperComponent } from './dashboard-wrapper.component';
 import { Leaderboard } from './leader-board/leader-board';
-import {UserProfileComponent} from './user-profile/user-profile';
+import { UserProfileComponent } from './user-profile/user-profile';
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    component:Dashboard
+    component: DashboardWrapperComponent
   },
   {
-    path:'leaderboard',
-    component:Leaderboard
+    path: 'leaderboard',
+    component: Leaderboard
   },
   {
-    path:'profile',
-    component:UserProfileComponent
+    path: 'profile',
+    component: UserProfileComponent
   }
 ];
 
@@ -23,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class NonAdminPagesRoutingModule { }
+export class NonAdminPagesRoutingModule {}

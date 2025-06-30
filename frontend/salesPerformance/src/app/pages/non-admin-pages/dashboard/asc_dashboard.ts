@@ -16,21 +16,21 @@ interface PerformanceData {
 }
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss'],
+  selector: 'app-asc-dashboard',
+  templateUrl: './asc_dashboard.html',
+  styleUrls: ['./asc_dashboard.scss'],
   standalone: true,
   imports: [MaterialModule, CommonModule],
 })
-export class Dashboard implements OnInit {
+export class AscDashboard implements OnInit {
   isDataLoaded: boolean = false;
 
   displayedColumns: string[] = [
     'month',
-    'fwa',
     'mnp',
     'jmnp',
     'mdsso',
+    'fwa',
     'simBilling',
     'threeMnp',
     'mnpTgtAct'
@@ -51,13 +51,12 @@ export class Dashboard implements OnInit {
   tsm: string | null = null;
   zsm: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.isDataLoaded = false;
 
     this.http.get<any>(BACKEND_IP + 'dashboard').subscribe((response: any) => {
-      console.log('Full dashboard response:', response);
 
       // Performance data
       this.dataSource = response.performance.map((entry: any) => ({
@@ -87,7 +86,6 @@ export class Dashboard implements OnInit {
       this.incentiveSchemeUrl = response.incentive_scheme
         ? `${BACKEND_IP}${response.incentive_scheme.replace(/^app\//, '')}`
         : null;
-      console.log('Incentive Scheme URL:', this.incentiveSchemeUrl);
 
       // Profile info
       this.zone = response.zone ?? null;

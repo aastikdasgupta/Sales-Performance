@@ -32,7 +32,6 @@ export class Sidenav {
   ngOnInit() {
     if (typeof sessionStorage !== 'undefined') {
       const role = sessionStorage.getItem('sp_role');
-      console.log('Role from sessionStorage:', role);
       if (role === 'Admin') {
         this.sectionsToShow = this.sectionsByRole['admin'];
       } else {
@@ -45,7 +44,6 @@ export class Sidenav {
 
   navigateWithRole(section: { label: string, link: string }) {
       this.selectedLabel = section.label;
-    console.log('navigateWithRole called with:', section);
 
     const labelToRoleMap: { [label: string]: string } = {
       'Upload Data': 'admin',
@@ -61,12 +59,10 @@ export class Sidenav {
     const currentRole = sessionStorage.getItem('sp_role');
     if (!currentRole) {
       sessionStorage.setItem('sp_role', 'Admin');
-      console.log('sp_role was not set, fallback to Admin');
     }
 
     // Set selected temp role
     sessionStorage.setItem('temp_role', TempRole);
-    console.log('temp_role set to:', TempRole);
 
     // Navigate to the route
     this.router.navigate([section.link]);

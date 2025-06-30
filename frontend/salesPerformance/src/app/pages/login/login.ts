@@ -20,9 +20,6 @@ export class Login {
   private _snackBar = inject(MatSnackBar);
   constructor(private http: HttpClient, private router:Router, private authService:UserAuthentication) {}
   onSubmit() {
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
-    console.log('Selected Role:', this.selectedRole);
     const payload = {
       phone: this.username,
       password: this.password,
@@ -30,7 +27,6 @@ export class Login {
     };
     this.http.post(BACKEND_IP + 'login', payload).subscribe({
       next: (response:any) => {
-        console.log('Login successful:', response);
         const accessToken = response.access_token;
         if (accessToken) {
           // Store the access token in sessionStorage
