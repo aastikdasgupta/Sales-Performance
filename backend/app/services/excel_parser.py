@@ -3,7 +3,7 @@ from typing import List, Dict
 from io import BytesIO
 from datetime import datetime
 
-def parse_excel(file: BytesIO, kpi_date: datetime, role_type: str) -> Dict[str, List[Dict]]:
+def parse_excel(file: BytesIO, kpi_date: datetime, role: str) -> Dict[str, List[Dict]]:
     df = pd.read_excel(file, sheet_name=None, header=1)
     performance = []
     performance_dtr = []

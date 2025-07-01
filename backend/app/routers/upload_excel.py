@@ -4,6 +4,7 @@ from datetime import datetime
 from app.services.excel_parser import parse_excel
 from app.database.db import SalesDB
 from app.auth import get_current_user
+import traceback
 
 router = APIRouter()
 
@@ -23,6 +24,7 @@ async def upload_excel(
     try:
         kpi_date = datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
+        print("Invalid date format")
         raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD")
 
     contents = await file.read()
@@ -41,6 +43,7 @@ async def upload_excel(
         print(performance_table)
 
         if not data_key or data_key not in parsed:
+            print("Invalid role or no data found.")
             raise HTTPException(status_code=400, detail="Invalid role or no data found.")
 
         with SalesDB() as db:
@@ -63,4 +66,6 @@ async def upload_excel(
         }
 
     except Exception as e:
+        print("Error parsing Excel")
+        traceback.print_exc()
         raise HTTPException(status_code=400, detail=f"Error parsing Excel: {e}")

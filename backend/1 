@@ -1,5 +1,55 @@
 nohup: ignoring input
-INFO:     Started server process [865450]
+INFO:     Started server process [873271]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     106.211.63.136:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.211.63.136:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     106.211.63.136:0 - "GET /show HTTP/1.0" 200 OK
+INFO:     106.211.63.136:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     106.211.63.136:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     106.211.63.136:0 - "GET /show HTTP/1.0" 200 OK
+INFO:     106.211.63.136:0 - "GET /leaderboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     34.47.200.17:46616 - "GET / HTTP/1.1" 404 Not Found
+INFO:     49.42.157.253:0 - "POST /login HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     106.75.189.197:33322 - "POST /token HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     47.237.168.96:51356 - "GET / HTTP/1.1" 404 Not Found
+INFO:     47.237.168.96:51396 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     71.6.134.234:37098 - "GET / HTTP/1.1" 404 Not Found
+INFO:     71.6.134.234:44720 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     223.184.202.252:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.184.202.252:0 - "GET /show HTTP/1.0" 200 OK
+INFO:     223.184.202.252:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     223.184.202.252:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     223.184.202.252:0 - "GET /show HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     3.130.96.91:50012 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.130.96.91:49224 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     180.149.126.10:55583 - "GET /c/ HTTP/1.1" 404 Not Found
+INFO:     106.222.189.159:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     49.37.112.115:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     157.49.182.98:0 - "GET /leaderboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
