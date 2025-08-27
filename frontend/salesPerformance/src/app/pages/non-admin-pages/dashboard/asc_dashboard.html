@@ -1,5 +1,9 @@
 <div class="column-flex" *ngIf="isDataLoaded">
 
+  <div *ngIf="dashboardMessage" class="dashboard-message">
+  {{ dashboardMessage }}
+</div>
+
   <!-- Zone / Distributor / TSM / ZSM Details (Line by Line) -->
   <mat-card class="wide-card">
     <h2>Details</h2>

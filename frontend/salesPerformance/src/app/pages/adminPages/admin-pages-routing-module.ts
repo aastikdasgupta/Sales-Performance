@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AscUser } from './asc-user/asc-user';
-import { XfeUser } from './xfe-user/xfe-user';
+import { ControlLog} from './control-log/control-log';
 import { Distributor } from './distributor/distributor';
 import { Promoter } from './promoter/promoter';
 import { UploadData } from './upload-data/upload-data';
@@ -12,8 +12,8 @@ const routes: Routes = [
     component:AscUser
   },
   {
-    path:'xfe',
-    component:XfeUser
+    path:'log',
+    component:ControlLog
   },
   {
     path:'distributor',

@@ -24,7 +24,6 @@ export class DashboardWrapperComponent implements OnInit {
   ngOnInit() {
     // Fetch role from correct key in sessionStorage
     const savedRole = sessionStorage.getItem('sp_role');
-    this.role = savedRole?.toLowerCase() ?? null; // Normalize to lowercase for matching
-    console.log('User Role (here?):', this.role);
+    this.role = savedRole?.toLowerCase() ?? null; 
   }
 }

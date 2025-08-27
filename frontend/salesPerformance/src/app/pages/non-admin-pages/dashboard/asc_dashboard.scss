@@ -11,6 +11,13 @@ table {
   table-layout: fixed; // Ensures columns don't expand too wide
 }
 
+.dashboard-message {
+  font-size: 0.9rem;  // smaller font size
+  margin-bottom: 20px;  // spacing below the message
+  color: var(--mat-sys-primary-container);
+  font-style: italic;
+}
+
 .details-header {
   font-weight: 500;
   font-size: 12px;

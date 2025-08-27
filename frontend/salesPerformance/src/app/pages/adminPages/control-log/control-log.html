@@ -1,0 +1,40 @@
+<div class="control-log-container">
+  <h2>Control Logs</h2>
+
+  <form [formGroup]="logForm" (ngSubmit)="onDateSubmit()" class="form-section">
+    <input type="date" formControlName="selectedDate" />
+    <button type="submit">Get Logs</button>
+  </form>
+
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="logs.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Login Time</th>
+        <th>IP Address</th>
+        <th>User Agent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of paginatedLogs">
+        <td>{{ log.id }}</td>
+        <td>{{ log.user_id }}</td>
+        <td>{{ log.username || '-' }}</td>
+        <td>{{ log.login_time }}</td>
+        <td>{{ log.ip_address || '-' }}</td>
+        <td>{{ log.user_agent || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-paginator
+    [length]="filteredLogs.length"
+    [pageSize]="pageSize"
+    (page)="onPageChange($event.pageIndex)">
+  </mat-paginator>
+</div>

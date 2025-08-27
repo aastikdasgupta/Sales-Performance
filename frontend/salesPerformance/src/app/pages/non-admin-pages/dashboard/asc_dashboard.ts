@@ -51,6 +51,8 @@ export class AscDashboard implements OnInit {
   tsm: string | null = null;
   zsm: string | null = null;
 
+  dashboardMessage: string | null = null;  // 👈 NEW FIELD
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -92,6 +94,9 @@ export class AscDashboard implements OnInit {
       this.distributor = response.distributor ?? null;
       this.tsm = response.tsm ?? null;
       this.zsm = response.zsm ?? null;
+
+      // 📌 Message data
+      this.dashboardMessage = response.message ?? null;
 
       this.isDataLoaded = true;
     });

@@ -21,14 +21,15 @@
         <div class="user-name">{{ user.user_name }}</div>
       </div>
 
+      <!-- Ordered KPI Section -->
       <div class="kpi-section">
-        <div class="kpi-box" *ngFor="let kpi of user.metrics | keyvalue">
-          <div class="kpi-title">{{ castKeyToString(kpi.key) | uppercase }}</div>
-          <div class="kpi-value">{{ kpi.value }}</div>
+        <div class="kpi-box" *ngFor="let kpiKey of metricOrder">
+          <div class="kpi-title">{{ castKeyToString(kpiKey) | uppercase }}</div>
+          <div class="kpi-value">{{ user.metrics[kpiKey] }}</div>
         </div>
       </div>
 
-      <div class="incentive">
+      <div class="incentive" *ngIf="user.incentive">
         Incentive: ₹{{ user.incentive }}
       </div>
     </mat-card>

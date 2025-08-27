@@ -16,7 +16,7 @@ export class Sidenav {
       { label: 'ASC', link: '/home/admin/asc' },
       { label: 'Distributor', link: '/home/admin/distributor' },
       { label: 'Promoter', link: '/home/admin/promoter' },
-      { label: 'XFE', link: '/home/admin/xfe' }
+      { label: 'Control Log', link: '/home/admin/control-log' }  // ✅ updated
     ],
     user: [
       { label: 'Dashboard', link: '/home/user/dashboard' },
@@ -43,14 +43,14 @@ export class Sidenav {
   selectedLabel: string | null = null;
 
   navigateWithRole(section: { label: string, link: string }) {
-      this.selectedLabel = section.label;
+    this.selectedLabel = section.label;
 
     const labelToRoleMap: { [label: string]: string } = {
       'Upload Data': 'admin',
       'ASC': 'asc',
       'Distributor': 'distributor',
       'Promoter': 'promoter',
-      'XFE': 'xfe'
+      'Control Log': 'control-log'   // ✅ updated
     };
 
     const TempRole = labelToRoleMap[section.label] || 'user';

@@ -19,29 +19,42 @@ export class Leaderboard implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.http.get<any>(BACKEND_IP + 'leaderboard').subscribe({
-      next: (res: any) => {
-        this.role = res.role;
-        this.leaderboards = res.leaderboards;
-        this.availableMonths = Object.keys(this.leaderboards).sort().reverse();
-        this.selectedMonth = this.availableMonths[0];
-      },
-      error: (err: any) => {
-        console.error('Failed to load leaderboard:', err);
+  metricOrder: string[] = [];
+
+ngOnInit(): void {
+  this.http.get<any>(BACKEND_IP + 'leaderboard').subscribe({
+    next: (res: any) => {
+      this.role = res.role;
+      this.leaderboards = res.leaderboards;
+      this.availableMonths = Object.keys(this.leaderboards);
+      this.selectedMonth = this.availableMonths[0];
+
+      // ✅ Extract metric order from first entry with data
+      for (const month of this.availableMonths) {
+        const monthData = this.leaderboards[month];
+        if (monthData && monthData.length > 0) {
+          this.metricOrder = Object.keys(monthData[0].metrics);
+          break;
+        }
       }
-    });
-  }
+    },
+    error: (err: any) => {
+      console.error('Failed to load leaderboard:', err);
+    }
+  });
+}
 
   selectMonth(month: string): void {
     this.selectedMonth = month;
   }
 
   getMonthLabel(monthKey: string): string {
-    const [year, month] = monthKey.split('-');
-    const date = new Date(+year, +month - 1);
+    const date = new Date(`01 ${monthKey} ${new Date().getFullYear()}`);
+    if (isNaN(date.getTime())) {
+      return monthKey; // fallback to original if date is invalid
+    }
     return date.toLocaleString('default', { month: 'long', year: 'numeric' });
-  }
+}
 
   // ✅ Template-safe helper to prevent type errors
   castKeyToString(key: unknown): string {

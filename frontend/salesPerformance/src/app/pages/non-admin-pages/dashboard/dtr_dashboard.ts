@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MaterialModule } from '../../../shared/material-module/material-module';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { BACKEND_IP } from '../../../constant';
 
 interface PerformanceData {
@@ -40,19 +41,42 @@ interface IncentivePerformance {
   templateUrl: './dtr_dashboard.html',
   styleUrls: ['./dtr_dashboard.scss'],
   standalone: true,
-  imports: [MaterialModule, CommonModule],
+  imports: [MaterialModule, CommonModule, FormsModule],
 })
 export class DtrDashboard implements OnInit {
   isDataLoaded = false;
 
-  // Display columns
-  displayedColumns: string[] = [
-    'month', 'gross', 'mnp', 'trade_gross', 'trade_mnp', 'ds', 'pipo', 'fwa', 'visits_5g'
+  // Editable column metadata
+  displayedColumnsMeta = [
+    { key: 'month', header: 'Month' },
+    { key: 'gross', header: 'Gross Activations' },
+    { key: 'mnp', header: 'MNP Count' },
+    { key: 'trade_gross', header: 'Trade Gross' },
+    { key: 'trade_mnp', header: 'Trade MNP' },
+    { key: 'ds', header: 'DS Count' },
+    { key: 'pipo', header: 'PIPO' },
+    { key: 'fwa', header: 'FWA' },
+    { key: '5g_site', header: '5G Visits' }
   ];
-  hygieneDisplayedColumns: string[] = [
-    'month', 'asc_norms', 'gt_sso', 'dsso', 'mdsso', 'sim_billing', 'jmnp_auto', 'tgt_act_4g'
+  get displayedColumns(): string[] {
+    return this.displayedColumnsMeta.map(col => col.key);
+  }
+
+  hygieneDisplayedColumnsMeta = [
+    { key: 'month', header: 'Month' },
+    { key: 'asc_norms', header: 'ASC Norms' },
+    { key: 'gt_sso', header: 'GT SSO' },
+    { key: 'dsso', header: 'DSSO' },
+    { key: 'mdsso', header: 'MDSSO' },
+    { key: 'sim_billing', header: 'SIM Billing' },
+    { key: 'jmnp_auto', header: 'JMNP Auto' },
+    { key: 'tgt_act_4g', header: 'Target 4G Activations' }
   ];
-  incentiveDisplayedColumns: string[] = ['month', 'tdp_earned', 'pli_slab', 'total_earning', 'rank'];
+  get hygieneDisplayedColumns(): string[] {
+    return this.hygieneDisplayedColumnsMeta.map(col => col.key);
+  }
+
+  incentiveDisplayedColumns = ['month', 'tdp_earned', 'pli_slab', 'total_earning', 'rank'];
 
   // Data sources
   dataSource: PerformanceData[] = [];
@@ -74,13 +98,10 @@ export class DtrDashboard implements OnInit {
     this.isDataLoaded = false;
 
     this.http.get<any>(BACKEND_IP + 'dashboard').subscribe((response: any) => {
-      // Performance
-      this.dataSource = response.performance;
+      this.dataSource = response.performance || [];
 
-      // Hygiene
       this.hygieneDataSource = response.hygiene || [];
 
-      // Incentives
       this.incentiveDataSource = response.incentive_performance.map((entry: any) => ({
         month: entry.month,
         tdp_earned: entry.tdp_earned ?? 0,
@@ -89,12 +110,10 @@ export class DtrDashboard implements OnInit {
         rank: entry.rank !== null && entry.rank !== undefined ? entry.rank : 'N/A',
       }));
 
-      // Incentive PDF URL
       this.incentiveSchemeUrl = response.incentive_scheme
         ? `${BACKEND_IP}${response.incentive_scheme.replace(/^app\//, '')}`
         : null;
 
-      // Profile Info
       this.zone = response.zone ?? null;
       this.distributor = response.distributor ?? null;
       this.tsm = response.tsm ?? null;
