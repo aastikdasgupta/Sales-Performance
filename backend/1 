@@ -1,55 +1,192 @@
 nohup: ignoring input
-INFO:     Started server process [873271]
+INFO:     Started server process [3672177]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     106.211.63.136:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     106.211.63.136:0 - "GET /leaderboard HTTP/1.0" 200 OK
-INFO:     106.211.63.136:0 - "GET /show HTTP/1.0" 200 OK
-INFO:     106.211.63.136:0 - "GET /leaderboard HTTP/1.0" 200 OK
-INFO:     106.211.63.136:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     106.211.63.136:0 - "GET /show HTTP/1.0" 200 OK
-INFO:     106.211.63.136:0 - "GET /leaderboard HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:62972 - "POST /login HTTP/1.1" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "GET /user/profile/list-by-role?role=asc HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     58.84.23.38:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     108.61.73.186:32514 - "GET / HTTP/1.1" 404 Not Found
+INFO:     108.61.73.186:32514 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     108.61.73.186:32526 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     108.61.73.186:9914 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     106.215.146.60:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     106.215.146.60:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.222.191.135:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     106.222.191.135:0 - "GET /dashboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     3.143.33.63:32844 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.143.33.63:37628 - "GET / HTTP/1.1" 404 Not Found
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
-INFO:     34.47.200.17:46616 - "GET / HTTP/1.1" 404 Not Found
-INFO:     49.42.157.253:0 - "POST /login HTTP/1.0" 200 OK
-WARNING:  Invalid HTTP request received.
-INFO:     106.75.189.197:33322 - "POST /token HTTP/1.1" 404 Not Found
-WARNING:  Invalid HTTP request received.
-WARNING:  Invalid HTTP request received.
-INFO:     47.237.168.96:51356 - "GET / HTTP/1.1" 404 Not Found
-INFO:     47.237.168.96:51396 - "GET /favicon.ico HTTP/1.1" 404 Not Found
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
-INFO:     71.6.134.234:37098 - "GET / HTTP/1.1" 404 Not Found
-INFO:     71.6.134.234:44720 - "GET /favicon.ico HTTP/1.1" 404 Not Found
-WARNING:  Invalid HTTP request received.
-WARNING:  Invalid HTTP request received.
-INFO:     223.184.202.252:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     223.184.202.252:0 - "GET /show HTTP/1.0" 200 OK
-INFO:     223.184.202.252:0 - "GET /leaderboard HTTP/1.0" 200 OK
-INFO:     223.184.202.252:0 - "GET /leaderboard HTTP/1.0" 200 OK
-INFO:     223.184.202.252:0 - "GET /show HTTP/1.0" 200 OK
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
-INFO:     3.130.96.91:50012 - "GET / HTTP/1.1" 404 Not Found
-INFO:     3.130.96.91:49224 - "GET / HTTP/1.1" 404 Not Found
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
-INFO:     180.149.126.10:55583 - "GET /c/ HTTP/1.1" 404 Not Found
-INFO:     106.222.189.159:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     49.37.112.115:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     157.49.182.98:0 - "GET /leaderboard HTTP/1.0" 200 OK
 WARNING:  Invalid HTTP request received.
-INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
-INFO:     157.49.182.98:0 - "POST /login HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     134.209.52.149:58778 - "GET / HTTP/1.1" 404 Not Found
+INFO:     134.209.52.149:58782 - "GET /login HTTP/1.1" 405 Method Not Allowed
+INFO:     117.97.212.238:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     117.97.212.238:0 - "POST /login HTTP/1.0" 401 Unauthorized
+INFO:     117.97.212.238:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     117.97.212.238:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     117.97.212.238:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     117.97.212.238:0 - "GET /dashboard HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     171.48.110.193:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     171.48.110.193:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.231.234.226:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     223.231.234.226:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.216.66.80:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     106.216.66.80:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     106.216.66.80:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     106.216.66.80:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     147.185.132.171:60562 - "GET / HTTP/1.1" 404 Not Found
+INFO:     205.210.31.235:59104 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     3.143.33.63:35342 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.143.33.63:58912 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     162.243.101.221:38968 - "GET / HTTP/1.1" 404 Not Found
+INFO:     162.243.101.221:38976 - "GET /login HTTP/1.1" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     91.196.152.15:46691 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.134.148.59:43084 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     3.134.148.59:50458 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     91.196.152.184:44287 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     147.182.160.235:47918 - "GET / HTTP/1.1" 404 Not Found
+INFO:     147.182.160.235:47930 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     3.149.59.26:43314 - "GET / HTTP/1.1" 404 Not Found
+INFO:     3.149.59.26:45882 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     93.123.109.222:47214 - "GET /weblogin.htm%22%3Bf.sUserName.focus%28%29%3Bif%28sUser_mgt_End%3D%3D%22%22%29%7Bif%28mode%29%7Bswitch%28mode%29%7Bcase%203%3A%20if%28iFrmLgErr%3D%3D4%29%7Berrmsg.innerHTML%3DTR%28%22User%20Mode%20is%20off%20now.%22%29%3B%7Delse%20if%28iFrmLgErr%3D%3D5%29%7Berrmsg.innerHTML%3DTR%28%22Wrong%20validation%20code%21%22%29%3B%7Delse%7Berrmsg.innerHTML%3DTR%28%22The%20username%20or%20password%20you%20entered%20is%20incorrect.%22%29%3B%7Dbreak%3Bcase%204%3A%20errmsg.innerHTML%3DTR%28%22Reach%20the%20maximum%20login%20number.%20Try%20another%20user%20account.%22%29%3Bbreak%3Bcase%205%3A%20errmsg.innerHTML%3DTR%28%22No%20available%20buffer%20now.%20Please%20contact%20with%20your%20administrator%22%29%3Bbreak%3Bcase%206%3A%20errmsg.innerHTML%3DTR%28%22The%20username%20or%20password%20you%20entered%20is%20incorrect.%22%29%3Bbreak%3Bcase%207%3Aerrmsg.innerHTML%3DTR%28%22User%20account%20is%20not%20enabled%20now.%22%29%3Bbreak%3Bcase%208%3Aerrmsg.innerHTML%3DTR%28%22You%20aren%27t%20allowed%20to%20access%20internet%20%28out%20of%20schedule%29.%22%29%3Bbreak%3Bcase%209%3Aerrmsg.innerHTML%3DTR%28%22User%20login%20denied%20from%20http%20protocol.%20Please%20contact%20with%20your%20administrator%22%29%3Bbreak%3Bcase%2010%3Aerrmsg.innerHTML%3DTR%28%22The%20user%20ran%20out%20of%20time%20quota.%22%29%3Bbreak%3Bcase%2011%3Aerrmsg.innerHTML%3DTR%28%22The%20user%20ran%20out%20of%20data%20quota.%22%29%3Bbreak%3Bcase%2012%3Aerrmsg.innerHTML%3DTR%28%22Wrong%20user%20account.%20Please%20contact%20with%20your%20administrator.%22%29%3Bbreak%3Bdefault%3Aif%28iFrmLgErr%3D%3D2%29errmsg.innerHTML%3DTR%28%22The%20username%20or%20password%20you%20entered%20is%20incorrect.%22%29%3Bbreak%3B%7D%7Delse%20if%28iFrmLgErr%3D%3D2%29%7Berrmsg.innerHTML%3DTR%28%22The%20username%20or%20password%20you%20entered%20is%20incorrect.%22%29%3B%7Delse%20if%28iFrmLgErr%3D%3D4%29%7Berrmsg.innerHTML%3DTR%28%22User%20Mode%20is%20off%20now.%22%29%3B%7Delse%20if%28iFrmLgErr%3D%3D5%29%7Berrmsg.innerHTML%3DTR%28%22Wrong%20validation%20code%21%22%29%3B%7D%7Delse%20if%28iFrmLgErr%3D%3D2%29%7Berrmsg.innerHTML%3DTR%28%22The%20username%20or%20password%20you%20entered%20is%20incorrect.%22%29%3B%7Delse%20if%28iFrmLgErr%3D%3D4%29%7Berrmsg.innerHTML%3DTR%28%22User%20Mode%20is%20off%20now.%22%29%3B%7Delse%20if%28iFrmLgErr%3D%3D5%29%7Berrmsg.innerHTML%3DTR%28%22Wrong%20validation%20code%21%22%29%3B%7Dif%28sValidatedCode%21%3D%22%22%29%7BshowElmtByClass%28document%2C%22tr%22%2C%22sValidatedCode%22%29%3B%7Dif%28%27https%3A%27%21%3Ddocument.location.protocol%29%7Bdocument.getElementById%28%22warning%22%29.style.display%3D%22%22%3B%7Delse%7Bdocument.getElementById%28%22warning%22%29.style.display%3D%22none%22%3B%7D%20for%28var%20d%3D0%3Bd%3Cdocument.forms.length%3Bd%2B%2B%29%7B%20for%28var%20e%3D0%3Be%3Cdocument.forms%5Bd%5D.elements.length%3Be%2B%2B%29%7Baddhandlers%28document.forms%5Bd%5D.elements%5Be%5D%29%3B%7D%7D%7Dfunction%20HttpsLogin%28%29%7Bvar%20url%3Dwindow.location.href%3Bvar%20new_url%3Durl%3Bvar%20dport%3D4443%3Burl%3Durl.replace%28%22http%3A//%22%2C%22https%3A//%22%29%3Bif%28url.split%28%22%3A%22%29.length%3D%3D3%29%7B%20new_url%3Durl.split%28%22%3A%22%29%5B0%5D%2B%22%3A%22%2Burl.split%28%22%3A%22%29%5B1%5D%2B%22%3A%22%2Bdport%3B%7Delse%20if%28url.split%28%22%3A%22%29.length%3D%3D2%29%7B%20var%20tmp%3Durl.split%28%22%3A%22%29%5B1%5D.split%28%22/%22%29%3Bnew_url%3Durl.split%28%22%3A%22%29%5B0%5D%2B%22%3A//%22%2Btmp%5B2%5D%2B%22%3A%22%2Bdport%3B%7Dwindow.location.href%3Dnew_url%3B%7Dfunction%20initParameter%28%29%7Bif%28sUser_mgt_End%3D%3D%22%22%29%7Bsrc_ip%3D%27%27%3Btarget_url%3D%27%27%3Bmode%3D6%3Bfw_set%3D0%3Bfw_rule%3D0%3B%7D%7Dfunction%20encode%28instr%29%7Bvar%20keyStr%3D%22ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%2B/%3D%22%3Bvar%20outstr%3D%22%22%3Bvar%20chr1%2Cchr2%2Cchr3%3D%22%22%3Bvar%20enc1%2Cenc2%2Cenc3%2Cenc4%3D%22%22%3Bvar%20i%3D0%3Bdo%7Bchr1%3Dinstr.charCodeAt%28i%2B%2B%29%3Bchr2%3Dinstr.charCodeAt%28i%2B%2B%29%3Bchr3%3Dinstr.charCodeAt%28i%2B%2B%29%3Benc1%3Dchr1%3E%3E2%3Benc2%3D%28%28chr1%263%29%3C%3C4%29%7C%28chr2%3E%3E4%29%3Benc3%3D%28%28chr2%2615%29%3C%3C2%29%7C%28chr3%3E%3E6%29%3Benc4%3Dchr3%2663%3Bif%28isNaN%28chr2%29%29%7Benc3%3Denc4%3D64%3B%7Delse%20if%28isNaN%28chr3%29%29%7Benc4%3D64%3B%7Doutstr%3Doutstr%2BkeyStr.charAt%28enc1%29%2BkeyStr.charAt%28enc2%29%2BkeyStr.charAt%28enc3%29%2BkeyStr.charAt%28enc4%29%3Bchr1%3Dchr2%3Dchr3%3D%22%22%3Benc1%3Denc2%3Denc3%3Denc4%3D%22%22%3B%7Dwhile%28i%3Cinstr.length%29%3Breturn%20outstr%3B%7Dfunction%20submitPara%28%29%7Bvar%20frmSub%3Ddocument.frmSub%3Bvar%20fwElmIdx%3D2%3BfrmSub.method%3D%22post%22%3BfrmSub.action%3D%22cgi-bin/wlogin.cgi%22%3BfrmSub%5B0%5D.name%3D%22aa%22%3BfrmSub%5B0%5D.value%3Dencode%28f.sUserName.value%29%3BfrmSub%5B1%5D.name%3D%22ab%22%3BfrmSub%5B1%5D.value%3Dencode%28f.sSysPass.value%29%3B%20if%28sUser_mgt_End%3D%3D%22%22%26%26mode%21%3D0%29%7BfrmSub%5B2%5D.name%3D%22src_ip%22%3BfrmSub%5B2%5D.value%3Dsrc_ip%3BfrmSub%5B3%5D.name%3D%22target_url%22%3BfrmSub%5B3%5D.value%3Dtarget_url%3BfrmSub%5B4%5D.name%3D%22mode%22%3BfrmSub%5B4%5D.value%3Dmode%3BfrmSub%5B5%5D.name%3D%22fw_set%22%3BfrmSub%5B5%5D.value%3Dfw_set%3BfrmSub%5B6%5D.name%3D%22fw_rule%22%3BfrmSub%5B6%5D.value%3Dfw_rule%3BfwElmIdx%3D7%3B%7Dif%28enSSlgrp%3D%3D%22%22%7C%7CenAdminAuth%3D%3D%22%22%29%7BfrmSub%5BfwElmIdx%5D.name%3D%22sslgroup%22%3BfrmSub%5BfwElmIdx%5D.value%3Df.sltsslgrp.value%3B%7Dif%28sValidatedCode%21%3D%22%22%29%7BfwElmIdx%2B%2B%3BfrmSub%5BfwElmIdx%5D.name%3D%22sVerifCode%22%3BfrmSub%5BfwElmIdx%5D.value%3Ddocument.getElementById%28%22validated_code%22%29.value%3BfwElmIdx%2B%2B%3BfrmSub%5BfwElmIdx%5D.name%3D%22sValidatedCodeNum%22%3BfrmSub%5BfwElmIdx%5D.value%3DsValidatedCodeNum%3B%7DfrmSub%5Bform_num%5D.name%3D%22sFormAuthStr%22%3BfrmSub%5Bform_num%5D.value%3DrandomString%2815%29%3BfrmSub.submit%28%29%3B%7Dfunction%20randomString%28len%29%7Bvar%20chars%3D%27ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678%27%3Bvar%20maxPos%3Dchars.length%3Bvar%20pwd%3D%27%27%3Bfor%28i%3D0%3Bi%3Clen%3Bi%2B%2B%29%7Bpwd%2B%3Dchars.charAt%28Math.floor%28Math.random%28%29%2AmaxPos%29%29%3B%7Dreturn%20pwd%3B%7Dfunction%20handler%28_e%29%7Bvar%20e%3D_e%2Celmt%2Ctype%3Bif%28isNav%29%7Belmt%3De.target%3Btype%3De.type%3Bkeycode%3De.which%3B%7Dif%28isIE%7C%7CisOpr%29%7Be%3Dwindow.event%3Belmt%3De.srcElement%3Btype%3De.type%3Bkeycode%3De.keyCode%3B%7D%20if%28isIE%29%7Bif%28elmt.type%3D%3D%22text%22%29e.cancelBubble%3Dfalse%3Belse%20e.cancelBubble%3Dtrue%3B%7Dif%28elmt%3D%3Df.btnOk%26%26type%3D%3D%22click%22%29%7BsubmitPara%28%29%3B%7Dif%28elmt%21%3Df.btnOk%26%26type%3D%3D%22keydown%22%29%7Bif%28keycode%3D%3D13%29%7B%20e.returnValue%3Dfalse%3BsubmitPara%28%29%3B%7D%7D%7D%20function%20addhandlers%28_o%29%7Bvar%20o%3D_o%3Bo.onclick%3Dhandler%3Bo.onkeydown%3Dhandler%3B%7Dfunction%20ClearCookies%28%29%7Bvar%20temp%3Ddocument.cookie.split%28%22%3B%22%29%3Bvar%20ts%3Bfor%28var%20i%3D0%3B%3Bi%2B%2B%29%7Bif%28%21temp%5Bi%5D%29break%3Bts%3Dtemp%5Bi%5D.split%28%22%3D%22%29%5B0%5D%3BDeleteCookie%28ts%29%3B%7D%7Dfunction%20GetCookieVal%28offset%29%7Bvar%20endstr%3Ddocument.cookie.indexOf%28%22%3B%22%2Coffset%29%3Bif%28endstr%3D%3D-1%29endstr%3Ddocument.cookie.length%3Breturn%20unescape%28document.cookie.substring%28offset%2Cendstr%29%29%3B%7Dfunction%20GetCookie%28name%29%7Bvar%20arg%3Dname%2B%22%3D%22%3Bvar%20alen%3Darg.length%3Bvar%20clen%3Ddocument.cookie.length%3Bvar%20i%3D0%3Bwhile%28i%3Cclen%29%7Bvar%20j%3Di%2Balen%3Bif%28document.cookie.substring%28i%2Cj%29%3D%3Darg%29return%20GetCookieVal%28j%29%3Bi%3Ddocument.cookie.indexOf%28%22%20%22%2Ci%29%2B1%3Bif%28i%3D%3D0%29break%3B%7Dreturn%20null%3B%7Dfunction%20DeleteCookie%28name%29%7Bvar%20exp%3Dnew%20Date%28%29%3Bexp.setTime%28exp.getTime%28%29-1%29%3Bvar%20cval%3DGetCookie%28name%29%3Bdocument.cookie%3Dname%2B%22%3D%22%2Bcval%2B%22%3B%20expires%3D HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     103.203.57.20:47062 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     112.115.155.140:46118 - "GET / HTTP/1.0" 404 Not Found
+INFO:     59.53.133.104:13542 - "GET / HTTP/1.1" 404 Not Found
+INFO:     171.48.111.48:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     171.48.111.48:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     157.49.80.171:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     157.49.80.171:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     157.49.80.171:0 - "GET /user/profile/list-by-role?role=asc HTTP/1.0" 200 OK
+INFO:     157.49.80.171:0 - "POST /login HTTP/1.0" 200 OK
+INFO:     223.184.201.29:0 - "POST /login HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     223.184.201.29:0 - "GET /dashboard HTTP/1.0" 200 OK
+INFO:     223.184.201.29:0 - "GET /leaderboard HTTP/1.0" 200 OK
+ASC
+performance
+[('5lm', (2025, 3), 'March'), ('4lm', (2025, 4), 'April'), ('3lm', (2025, 5), 'May'), ('llm', (2025, 6), 'June'), ('lm', (2025, 7), 'July')]
+INFO:     223.184.201.29:0 - "GET /dashboard HTTP/1.0" 200 OK

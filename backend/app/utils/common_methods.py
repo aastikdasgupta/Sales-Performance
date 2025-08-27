@@ -3,7 +3,7 @@ from dateutil.relativedelta import relativedelta
 
 ROLE_KPIS = {
     "ASC": ["mnp", "mdsso", "fwa", "sim_billing", "jmnp", "3mnp", "mnp_tgt_act"],
-    "Distributor": ["gross", "mnp", "trade_gross", "trade_mn", "ds", "pipo", "fwa", "visits_5g"],
+    "Distributor": ["gross", "mnp", "trade_gross", "trade_mnp", "ds", "pipo", "fwa", "5g_site"],
     "Promoter": ["gross", "mnp", "jpipo", "site_visits", "jio_mnp"]
 }
 

@@ -1,5 +1,3 @@
-# backend/app/auth.py
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
@@ -40,6 +38,23 @@ def verify_user_db(phone: str, password: str, role: str):
             and user["role"].lower() == role.lower()
         )
 
+# Get user by phone and role
+def get_user_details(phone: str, role: str):
+    with SalesDB() as db:
+        users = db.get_records("users", [("phone", "=", phone), ("role", "=", role)])
+        return users[0] if users else None
+
+# Log login time to control_log table
+def log_login(user_id: int, name: str, phone: str, role: str):
+    with SalesDB() as db:
+        db.add_record("control_log", {
+            "user_id": user_id,
+            "name": name,
+            "phone": phone,
+            "role": role,
+            "login_time": datetime.now().isoformat()
+        })
+
 # JWT creation
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
@@ -54,6 +69,7 @@ async def login(login_req: LoginRequest):
     password = login_req.password
     role = login_req.role
 
+    # Step 1: Verify user
     if not verify_user_db(phone, password, role):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -61,6 +77,20 @@ async def login(login_req: LoginRequest):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
+    # Step 2: Fetch user details (id, name) to log
+    user = get_user_details(phone, role)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # Step 3: Log the successful login
+    log_login(
+        user_id=user["id"],
+        name=user["name"],
+        phone=phone,
+        role=role
+    )
+
+    # Step 4: Generate access token
     access_token = create_access_token(data={"sub": phone, "role": role})
     return {"access_token": access_token, "token_type": "bearer"}
 

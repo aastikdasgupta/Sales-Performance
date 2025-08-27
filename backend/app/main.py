@@ -9,6 +9,7 @@ from app.auth import router as auth_router
 from app.routers import dashboard
 from app.routers import leaderboard
 from app.routers import user_profile
+from app.routers import control_log
 from fastapi.staticfiles import StaticFiles
 import os
 
@@ -34,4 +35,5 @@ app.include_router(upload_excel.router)
 app.include_router(upload_incentive.router)
 app.include_router(dashboard.router)
 app.include_router(leaderboard.router)
+app.include_router(control_log.router)
 app.mount("/static", StaticFiles(directory=os.path.join("app", "static")), name="static")

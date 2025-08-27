@@ -54,9 +54,10 @@ def parse_excel(file: BytesIO, kpi_date: datetime, role: str) -> Dict[str, List[
                 })
             elif role.lower() == "distributor":
                 performance_dtr.append({
-                    "user_phone": str(row.get("RETAILER", "")).strip(),
+                    "user_phone": str(row.get("DTR MSISDN", "")).strip(),
                     "date": kpi_date.strftime("%Y-%m-%d"),
                     "alt_phone": row.get("Alternate Number", 0),
+                    "role": row.get("Role", 0),
                     
                     "llm_gross": row.get("LLM Gross", 0),
                     "llm_mnp": row.get("LLM MNP", 0),

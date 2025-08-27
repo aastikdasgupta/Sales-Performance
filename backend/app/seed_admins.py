@@ -27,14 +27,12 @@ users_to_seed = [
     }
 ]
 
-# Load the Excel and extract records
-excel_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ASC_Users.xlsx")
-df = pd.read_excel(excel_path)
+# === ASC Users ===
+asc_excel_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ASC_Users.xlsx")
+asc_df = pd.read_excel(asc_excel_path)
+asc_df = asc_df[asc_df['RETAILER'].notna() & asc_df['Full Name'].notna()]
 
-# Ensure only valid rows are used
-df = df[df['RETAILER'].notna() & df['Full Name'].notna()]
-
-for i, row in df.iterrows():
+for i, row in asc_df.iterrows():
     full_name = str(row['Full Name']).strip()
     phone = str(row['RETAILER']).strip()
     alt_phone = str(row['Alternate Number']).strip() if 'Alternate Number' in row else ""
@@ -62,6 +60,40 @@ for i, row in df.iterrows():
 
     users_to_seed.append(user)
 
+# === Distributor Users ===
+distributor_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Distributor_Users.xlsx")
+distributor_df = pd.read_excel(distributor_path)
+distributor_df = distributor_df[distributor_df['DTR MSISDN'].notna() & distributor_df['Full Name'].notna()]
+
+for i, row in distributor_df.iterrows():
+    full_name = str(row['Full Name']).strip()
+    phone = str(row['DTR MSISDN']).strip()
+    alt_phone = str(row['Alternate Number']).strip() if 'Alternate Number' in row else ""
+    role = str(row['Role']).strip()
+
+    if len(phone) < 6:
+        continue
+
+    password = phone[-6:]
+
+    user = {
+        "name": full_name,
+        "photo": None,
+        "username": full_name.lower().replace(" ", "")[:12] + "_d" + str(i),
+        "password": password,
+        "role": role,
+        "email": None,
+        "phone": phone,
+        "alt_phone": alt_phone,
+        "zone": "",
+        "dtr": "",
+        "tsm": "",
+        "zsm": ""
+    }
+
+    users_to_seed.append(user)
+
+# === Seeder Function ===
 def seed_users():
     with SalesDB() as db:
         for user in users_to_seed:

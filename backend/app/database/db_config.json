@@ -58,6 +58,7 @@
   "id INTEGER PRIMARY KEY AUTOINCREMENT",
   "user_id INTEGER",
   "date TEXT",
+  "role TEXT",
 
   "llm_gross TEXT", "llm_mnp TEXT", "llm_trade_gross TEXT", "llm_trade_mnp TEXT", "llm_stock TEXT", "llm_ds TEXT", "llm_pipo TEXT", "llm_fwa TEXT", "llm_5g_site TEXT",
   "lm_gross TEXT", "lm_mnp TEXT", "lm_trade_gross TEXT", "lm_trade_mnp TEXT", "lm_stock TEXT", "lm_ds TEXT", "lm_pipo TEXT", "lm_fwa TEXT", "lm_5g_site TEXT",
@@ -74,5 +75,14 @@
   "incentive_tdp_lm TEXT", "incentive_pli_lm TEXT", "incentive_total_lm TEXT",
 
   "rank_5lm TEXT", "rank_4lm TEXT", "rank_3lm TEXT", "rank_llm TEXT", "rank_lm TEXT"
+],
+
+"control_log": [
+  "id INTEGER PRIMARY KEY AUTOINCREMENT",
+  "user_id INTEGER",
+  "name TEXT",
+  "phone TEXT",
+  "role TEXT",
+  "login_time TEXT"         
 ]
 }

@@ -46,7 +46,7 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
                 continue
 
         # 🧩 Work with the last 3 suffixes from get_suffix_months
-        suffix_months = get_suffix_months()[-3:]  # last 3 only
+        suffix_months = get_suffix_months()
         leaderboards = {}
 
         for suffix, (_, _), month_name in reversed(suffix_months):  # reverse to show newest first
@@ -65,7 +65,8 @@ def get_leaderboards(current_user: dict = Depends(get_current_user)):
                     break
 
             if all_blank:
-                continue  # Skip this month, no valid ranks
+                leaderboards[month_name] = []  
+                continue
 
             # Build leaderboard entries with valid ranks only
             valid_stats = []
